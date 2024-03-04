@@ -9,23 +9,36 @@
 /* Begin PBXBuildFile section */
 		80019DAE2B962B2400DC689F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DAD2B962B2400DC689F /* AppDelegate.swift */; };
 		80019DB02B962B2400DC689F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DAF2B962B2400DC689F /* SceneDelegate.swift */; };
-		80019DB22B962B2400DC689F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DB12B962B2400DC689F /* ViewController.swift */; };
 		80019DB52B962B2400DC689F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80019DB32B962B2400DC689F /* Main.storyboard */; };
 		80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80019DB62B962B2400DC689F /* FeelTrace.xcdatamodeld */; };
 		80019DBA2B962B2800DC689F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80019DB92B962B2800DC689F /* Assets.xcassets */; };
 		80019DBD2B962B2800DC689F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80019DBB2B962B2800DC689F /* LaunchScreen.storyboard */; };
+		80019DC72B962DB100DC689F /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DC62B962DB100DC689F /* SplashView.swift */; };
+		80019DC92B96306800DC689F /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DC82B96306800DC689F /* SplashVC.swift */; };
+		80019DCF2B96316500DC689F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DCD2B96315700DC689F /* BaseViewController.swift */; };
+		80019DD02B96316500DC689F /* MyColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DCE2B96315700DC689F /* MyColors.swift */; };
+		80019DD42B9638D300DC689F /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DD32B9638D300DC689F /* OnboardingView.swift */; };
+		80019DD72B96399100DC689F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 80019DD62B96399100DC689F /* SnapKit */; };
+		80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DD82B963DEE00DC689F /* OnboardingVC.swift */; };
+		80019DDB2B96427F00DC689F /* Ex-UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DDA2B96427F00DC689F /* Ex-UIFont.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		80019DAA2B962B2400DC689F /* FeelTrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeelTrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80019DAD2B962B2400DC689F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80019DAF2B962B2400DC689F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		80019DB12B962B2400DC689F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		80019DB42B962B2400DC689F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80019DB72B962B2400DC689F /* FeelTrace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeelTrace.xcdatamodel; sourceTree = "<group>"; };
 		80019DB92B962B2800DC689F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80019DBC2B962B2800DC689F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80019DBE2B962B2800DC689F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80019DC62B962DB100DC689F /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		80019DC82B96306800DC689F /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		80019DCD2B96315700DC689F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		80019DCE2B96315700DC689F /* MyColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyColors.swift; sourceTree = "<group>"; };
+		80019DD32B9638D300DC689F /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		80019DD82B963DEE00DC689F /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
+		80019DDA2B96427F00DC689F /* Ex-UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ex-UIFont.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80019DD72B96399100DC689F /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,16 +72,62 @@
 		80019DAC2B962B2400DC689F /* FeelTrace */ = {
 			isa = PBXGroup;
 			children = (
-				80019DAD2B962B2400DC689F /* AppDelegate.swift */,
-				80019DAF2B962B2400DC689F /* SceneDelegate.swift */,
-				80019DB12B962B2400DC689F /* ViewController.swift */,
-				80019DB32B962B2400DC689F /* Main.storyboard */,
+				80019DC42B962D8800DC689F /* App */,
+				80019DCC2B96315700DC689F /* Containers */,
+				80019DC52B962D9C00DC689F /* Code */,
 				80019DB92B962B2800DC689F /* Assets.xcassets */,
-				80019DBB2B962B2800DC689F /* LaunchScreen.storyboard */,
-				80019DBE2B962B2800DC689F /* Info.plist */,
 				80019DB62B962B2400DC689F /* FeelTrace.xcdatamodeld */,
 			);
 			path = FeelTrace;
+			sourceTree = "<group>";
+		};
+		80019DC42B962D8800DC689F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				80019DAD2B962B2400DC689F /* AppDelegate.swift */,
+				80019DAF2B962B2400DC689F /* SceneDelegate.swift */,
+				80019DB32B962B2400DC689F /* Main.storyboard */,
+				80019DBB2B962B2800DC689F /* LaunchScreen.storyboard */,
+				80019DBE2B962B2800DC689F /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		80019DC52B962D9C00DC689F /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				80019DD12B96369000DC689F /* Splash */,
+				80019DD22B96369C00DC689F /* Onboarding */,
+			);
+			path = Code;
+			sourceTree = "<group>";
+		};
+		80019DCC2B96315700DC689F /* Containers */ = {
+			isa = PBXGroup;
+			children = (
+				80019DDA2B96427F00DC689F /* Ex-UIFont.swift */,
+				80019DCD2B96315700DC689F /* BaseViewController.swift */,
+				80019DCE2B96315700DC689F /* MyColors.swift */,
+			);
+			path = Containers;
+			sourceTree = "<group>";
+		};
+		80019DD12B96369000DC689F /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				80019DC62B962DB100DC689F /* SplashView.swift */,
+				80019DC82B96306800DC689F /* SplashVC.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		80019DD22B96369C00DC689F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				80019DD32B9638D300DC689F /* OnboardingView.swift */,
+				80019DD82B963DEE00DC689F /* OnboardingVC.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +146,9 @@
 			dependencies = (
 			);
 			name = FeelTrace;
+			packageProductDependencies = (
+				80019DD62B96399100DC689F /* SnapKit */,
+			);
 			productName = FeelTrace;
 			productReference = 80019DAA2B962B2400DC689F /* FeelTrace.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +177,9 @@
 				Base,
 			);
 			mainGroup = 80019DA12B962B2400DC689F;
+			packageReferences = (
+				80019DD52B96399100DC689F /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 80019DAB2B962B2400DC689F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,10 +207,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80019DB22B962B2400DC689F /* ViewController.swift in Sources */,
 				80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */,
+				80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */,
+				80019DC92B96306800DC689F /* SplashVC.swift in Sources */,
+				80019DC72B962DB100DC689F /* SplashView.swift in Sources */,
 				80019DAE2B962B2400DC689F /* AppDelegate.swift in Sources */,
 				80019DB02B962B2400DC689F /* SceneDelegate.swift in Sources */,
+				80019DD42B9638D300DC689F /* OnboardingView.swift in Sources */,
+				80019DD02B96316500DC689F /* MyColors.swift in Sources */,
+				80019DCF2B96316500DC689F /* BaseViewController.swift in Sources */,
+				80019DDB2B96427F00DC689F /* Ex-UIFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +294,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -279,7 +351,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -298,7 +370,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7VP863SW97;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FeelTrace/Info.plist;
+				INFOPLIST_FILE = FeelTrace/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -326,7 +398,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7VP863SW97;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = FeelTrace/Info.plist;
+				INFOPLIST_FILE = FeelTrace/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -367,6 +439,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		80019DD52B96399100DC689F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		80019DD62B96399100DC689F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 80019DD52B96399100DC689F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		80019DB62B962B2400DC689F /* FeelTrace.xcdatamodeld */ = {
