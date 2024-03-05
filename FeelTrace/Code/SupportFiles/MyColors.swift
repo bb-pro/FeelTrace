@@ -31,6 +31,7 @@ enum MyColors: Int, CaseIterable {
     case lightBlue = 0x99DDFF
     case white = 0xFFFFFF
     case tint = 0xEE5916
+    case secondary = 0xF7AC8B
     case blue = 0x019AE6
     case background = 0xFFA14A
     case darkGreen = 0x4E5C5F

@@ -5,19 +5,14 @@ final class OnboardingView: UIView {
     
     //MARK: - Elements
     
-    private(set) lazy var onboardingControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = 3
-        pageControl.currentPageIndicatorTintColor = MyColors.tint.color
-        pageControl.pageIndicatorTintColor = MyColors.secondaryText.color
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
+    private(set) lazy var customPageControl: CustomPageControlView = {
+        let pageControl = CustomPageControlView()
         return pageControl
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = CommonsFontType.regular.font(size: 34)
+        label.font = .customSFFont(.regular, size: 34)
         label.textColor = MyColors.black.color
         label.textAlignment = .center
         label.text = "Let’s create your profile!"
@@ -26,18 +21,80 @@ final class OnboardingView: UIView {
     
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = CommonsFontType.regular.font(size: 15)
+        label.font = .customSFFont(.regular, size: 15)
         label.textColor = MyColors.black.color
         label.textAlignment = .center
         label.text = "Add your name and your age"
         return label
     }()
     
-    private lazy var centerStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel])
+    private lazy var mainStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, textFieldStack, buttonStack])
         stackView.axis = .vertical
+        stackView.spacing = 16
         return stackView
     }()
+    
+    private(set) lazy var textFieldStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [nameTF, ageTF])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.alignment = .fill
+        return stackView
+    }()
+    
+    private(set) lazy var buttonStack: UIStackView = {
+        let topStackView = UIStackView(arrangedSubviews: [profile1, profile2])
+        topStackView.axis = .horizontal
+        topStackView.spacing = 16
+        let stackView = UIStackView(arrangedSubviews: [topStackView, profile3])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        stackView.alignment = .center
+        return stackView
+    }()
+    
+    private(set) lazy var nameTF: CustomTextFieldView = {
+        nameTF = CustomTextFieldView()
+        nameTF.field.placeholder = "Name"
+        return nameTF
+    }()
+    
+    private(set) lazy var ageTF: CustomTextFieldView = {
+        nameTF = CustomTextFieldView()
+        nameTF.field.placeholder = "Age"
+        return nameTF
+    }()
+    
+    private(set) lazy var profile1: ProfileButtonView = {
+        let btn = ProfileButtonView()
+        btn.button.setImage(.profile1, for: .normal)
+        btn.button.tag = 0
+        return btn
+    }()
+    
+    private(set) lazy var profile2: ProfileButtonView = {
+        let btn = ProfileButtonView()
+        btn.button.setImage(.profile2, for: .normal)
+        btn.button.tag = 1
+        return btn
+    }()
+    
+    private(set) lazy var profile3: ProfileButtonView = {
+        let btn = ProfileButtonView()
+        btn.button.setImage(.profile3, for: .normal)
+        btn.button.tag = 2
+        return btn
+    }()
+    
+    private(set) lazy var nextButton: CustomButtonView = {
+        let view = CustomButtonView()
+        view.btnUpdate(item: ButtonDM(icon: "", title: "Next", textColor: .white, backColor: MyColors.secondary.color))
+        view.actionButton.isEnabled = false
+        return view
+    }()
+    
+    lazy var profileButtons = [profile1, profile2, profile3]
     
     //MARK: - Initialization
     
@@ -45,7 +102,6 @@ final class OnboardingView: UIView {
         super.init(frame: frame)
         setUpViews()
         setUpConstraints()
-        setupPageControl()
     }
     
     required init?(coder: NSCoder) {
@@ -54,24 +110,28 @@ final class OnboardingView: UIView {
     
     func setUpViews() {
         backgroundColor = UIColor.white
-        addSubview(onboardingControl)
-        addSubview(centerStack)
+        addSubview(nextButton)
+        addSubview(customPageControl)
+        addSubview(mainStack)
     }
     
     func setUpConstraints() {
-        onboardingControl.snp.makeConstraints { make in
+        customPageControl.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerX.equalToSuperview()
         }
         
-        centerStack.snp.makeConstraints { make in
+        mainStack.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(self)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
         }
-    }
-    
-    func setupPageControl() {
-        onboardingControl.setIndicatorImage(UIImage(named: "progress"), forPage: 0)
-        onboardingControl.setIndicatorImage(UIImage(named: "progress"), forPage: 1)
-        onboardingControl.setIndicatorImage(UIImage(named: "progress"), forPage: 2)
+        
+        nextButton.snp.makeConstraints { make in
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-46)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+            make.height.equalTo(63)
+        }
     }
 }
