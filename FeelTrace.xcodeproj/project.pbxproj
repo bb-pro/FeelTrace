@@ -25,6 +25,13 @@
 		80019DE42B9712C900DC689F /* ProfileButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DE32B9712C900DC689F /* ProfileButtonView.swift */; };
 		80019DE72B972F1B00DC689F /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DE62B972F1B00DC689F /* CustomButtonView.swift */; };
 		80019DE92B97355000DC689F /* CustomPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DE82B97355000DC689F /* CustomPageControlView.swift */; };
+		80019DEB2B978B1900DC689F /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DEA2B978B1900DC689F /* Category.swift */; };
+		80019DED2B979B7600DC689F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DEC2B979A9C00DC689F /* TabBarController.swift */; };
+		80019DF02B979E2D00DC689F /* WorkoutsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DEF2B979E2D00DC689F /* WorkoutsView.swift */; };
+		80019DF22B979E3500DC689F /* WorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF12B979E3500DC689F /* WorkoutsVC.swift */; };
+		80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF32B97A28E00DC689F /* OnboardingData.swift */; };
+		80F65AF22B97C2C600842272 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F65AF12B97C2C600842272 /* ProfileVC.swift */; };
+		80F65AF42B97C2D600842272 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F65AF32B97C2D600842272 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +54,13 @@
 		80019DE32B9712C900DC689F /* ProfileButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonView.swift; sourceTree = "<group>"; };
 		80019DE62B972F1B00DC689F /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		80019DE82B97355000DC689F /* CustomPageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPageControlView.swift; sourceTree = "<group>"; };
+		80019DEA2B978B1900DC689F /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		80019DEC2B979A9C00DC689F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		80019DEF2B979E2D00DC689F /* WorkoutsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsView.swift; sourceTree = "<group>"; };
+		80019DF12B979E3500DC689F /* WorkoutsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsVC.swift; sourceTree = "<group>"; };
+		80019DF32B97A28E00DC689F /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
+		80F65AF12B97C2C600842272 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		80F65AF32B97C2D600842272 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +117,11 @@
 		80019DC52B962D9C00DC689F /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				80019DEC2B979A9C00DC689F /* TabBarController.swift */,
 				80019DDC2B96C3BD00DC689F /* SupportFiles */,
 				80019DD12B96369000DC689F /* Splash */,
 				80019DD22B96369C00DC689F /* Onboarding */,
+				80019DEE2B979E0B00DC689F /* Workouts */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -124,6 +140,8 @@
 			children = (
 				80019DD32B9638D300DC689F /* OnboardingView.swift */,
 				80019DD82B963DEE00DC689F /* OnboardingVC.swift */,
+				80019DEA2B978B1900DC689F /* Category.swift */,
+				80019DF32B97A28E00DC689F /* OnboardingData.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -148,6 +166,33 @@
 				80019DE82B97355000DC689F /* CustomPageControlView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		80019DEE2B979E0B00DC689F /* Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				80F65ADE2B97B06900842272 /* ProfileVC */,
+				80F65ADD2B97B05A00842272 /* WorkoutsVC */,
+			);
+			path = Workouts;
+			sourceTree = "<group>";
+		};
+		80F65ADD2B97B05A00842272 /* WorkoutsVC */ = {
+			isa = PBXGroup;
+			children = (
+				80019DEF2B979E2D00DC689F /* WorkoutsView.swift */,
+				80019DF12B979E3500DC689F /* WorkoutsVC.swift */,
+			);
+			path = WorkoutsVC;
+			sourceTree = "<group>";
+		};
+		80F65ADE2B97B06900842272 /* ProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				80F65AF12B97C2C600842272 /* ProfileVC.swift */,
+				80F65AF32B97C2D600842272 /* ProfileView.swift */,
+			);
+			path = ProfileVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,7 +272,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F65AF22B97C2C600842272 /* ProfileVC.swift in Sources */,
 				80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */,
+				80019DED2B979B7600DC689F /* TabBarController.swift in Sources */,
+				80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */,
 				80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */,
 				80019DE22B96C7E800DC689F /* CustomTextFieldView.swift in Sources */,
 				80019DC92B96306800DC689F /* SplashVC.swift in Sources */,
@@ -235,11 +283,15 @@
 				80019DAE2B962B2400DC689F /* AppDelegate.swift in Sources */,
 				80019DB02B962B2400DC689F /* SceneDelegate.swift in Sources */,
 				80019DDE2B96C41400DC689F /* Font + Extention.swift in Sources */,
+				80019DEB2B978B1900DC689F /* Category.swift in Sources */,
+				80019DF22B979E3500DC689F /* WorkoutsVC.swift in Sources */,
 				80019DD42B9638D300DC689F /* OnboardingView.swift in Sources */,
 				80019DD02B96316500DC689F /* MyColors.swift in Sources */,
 				80019DE72B972F1B00DC689F /* CustomButtonView.swift in Sources */,
 				80019DE42B9712C900DC689F /* ProfileButtonView.swift in Sources */,
 				80019DE92B97355000DC689F /* CustomPageControlView.swift in Sources */,
+				80019DF02B979E2D00DC689F /* WorkoutsView.swift in Sources */,
+				80F65AF42B97C2D600842272 /* ProfileView.swift in Sources */,
 				80019DCF2B96316500DC689F /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

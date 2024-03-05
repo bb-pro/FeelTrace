@@ -1,9 +1,12 @@
 import UIKit
 import SnapKit
 
+
 final class OnboardingView: UIView {
     
     //MARK: - Elements
+    
+    private let categories = Category.categories
     
     private(set) lazy var customPageControl: CustomPageControlView = {
         let pageControl = CustomPageControlView()
@@ -29,7 +32,7 @@ final class OnboardingView: UIView {
     }()
     
     private lazy var mainStack: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, textFieldStack, buttonStack])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, subtitleLabel, textFieldStack, buttonStack, typeButtonStack])
         stackView.axis = .vertical
         stackView.spacing = 16
         return stackView
@@ -54,16 +57,18 @@ final class OnboardingView: UIView {
         return stackView
     }()
     
+    private(set) lazy var typeButtonStack: UIStackView = createButtonStack()
+    
     private(set) lazy var nameTF: CustomTextFieldView = {
-        nameTF = CustomTextFieldView()
+        let nameTF = CustomTextFieldView()
         nameTF.field.placeholder = "Name"
         return nameTF
     }()
     
     private(set) lazy var ageTF: CustomTextFieldView = {
-        nameTF = CustomTextFieldView()
-        nameTF.field.placeholder = "Age"
-        return nameTF
+        let ageTF = CustomTextFieldView()
+        ageTF.field.placeholder = "Age"
+        return ageTF
     }()
     
     private(set) lazy var profile1: ProfileButtonView = {
@@ -96,6 +101,8 @@ final class OnboardingView: UIView {
     
     lazy var profileButtons = [profile1, profile2, profile3]
     
+    lazy var typeButtons: [UIButton] = createTypeButtons()
+    
     //MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -114,6 +121,61 @@ final class OnboardingView: UIView {
         addSubview(customPageControl)
         addSubview(mainStack)
     }
+    
+    private func createButtonStack() -> UIStackView {
+        let buttons = typeButtons
+        
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        stackView.alignment = .center
+        
+        let firstStackButtons = Array(buttons.prefix(3))
+        let firstHorizontalStack = UIStackView(arrangedSubviews: firstStackButtons)
+        firstHorizontalStack.axis = .horizontal
+        firstHorizontalStack.spacing = 8
+        firstHorizontalStack.alignment = .center
+        stackView.addArrangedSubview(firstHorizontalStack)
+        
+        let middleStackButtons = Array(buttons[3..<5])
+        let middleHorizontalStack = UIStackView(arrangedSubviews: middleStackButtons)
+        middleHorizontalStack.axis = .horizontal
+        middleHorizontalStack.spacing = 8
+        middleHorizontalStack.alignment = .center
+        stackView.addArrangedSubview(middleHorizontalStack)
+        
+        let lastStackButtons = Array(buttons.suffix(3))
+        let lastHorizontalStack = UIStackView(arrangedSubviews: lastStackButtons)
+        lastHorizontalStack.axis = .horizontal
+        lastHorizontalStack.spacing = 8
+        lastHorizontalStack.alignment = .center
+        stackView.addArrangedSubview(lastHorizontalStack)
+        
+        return stackView
+    }
+    
+    private func createTypeButtons() -> [UIButton] {
+        var buttons = [UIButton]()
+        for index in 0..<8 {
+            let category = categories[index]
+            let button = UIButton(type: .custom)
+            button.isUserInteractionEnabled = true
+            button.tag = index
+            button.layer.cornerRadius = 19
+            button.backgroundColor = MyColors.secondary.color
+            button.snp.makeConstraints { make in
+                make.height.equalTo(36)
+                make.width.equalTo(category.width)
+            }
+            button.setTitle(category.type, for: .normal)
+            buttons.append(button)
+            
+        }
+        return buttons
+    }
+    
+    
+    
     
     func setUpConstraints() {
         customPageControl.snp.makeConstraints { make in
@@ -134,4 +196,5 @@ final class OnboardingView: UIView {
             make.height.equalTo(63)
         }
     }
+    
 }

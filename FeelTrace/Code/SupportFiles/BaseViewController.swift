@@ -23,6 +23,7 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         tap.delegate = self
         self.hideKeyboardWhenTappedAround()
