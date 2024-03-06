@@ -20,6 +20,7 @@ class CustomSliderView: UIView {
         let slider = UISlider()
         slider.thumbTintColor = MyColors.tint.color
         slider.tintColor = MyColors.tint.color
+        slider.addTarget(self, action: #selector(sliderValueChanged(_:)), for: .valueChanged)
         return slider
     }()
     
@@ -36,6 +37,7 @@ class CustomSliderView: UIView {
         label.font = .customSFFont(.regular, size: 16)
         label.textColor = MyColors.secondaryText.color
         label.textAlignment = .right
+        label.text = "10"
         return label
     }()
     
@@ -46,7 +48,6 @@ class CustomSliderView: UIView {
         setUpConstraints()
         
         titleLabel.text = title
-        maxAmountLabel.text = "10"
     }
     
     required init?(coder: NSCoder) {
@@ -69,5 +70,11 @@ class CustomSliderView: UIView {
     
     // Set up constraints
     private func setUpConstraints() {
+    }
+    
+    // Slider value changed action
+    @objc private func sliderValueChanged(_ sender: UISlider) {
+        let value = Int(sender.value * 10)
+        amountLabel.text = "\(value)"
     }
 }

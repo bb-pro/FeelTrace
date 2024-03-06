@@ -112,12 +112,12 @@ final class AddArticleView: UIView {
     private func setUpConstraints() {
         
         topImgView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(6)
+            make.top.equalToSuperview().offset(12)
             make.centerX.equalTo(self.snp.centerX)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(topImgView.snp.bottom).offset(6)
+            make.top.equalTo(topImgView.snp.bottom).offset(16)
             make.centerX.equalTo(self.snp.centerX)
         }
         

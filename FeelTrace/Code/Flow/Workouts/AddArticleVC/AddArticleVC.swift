@@ -14,6 +14,8 @@ protocol AddArticleVCDelegate: AnyObject {
 final class AddArticleVC: BaseViewController {
     
     private let dataManager = CoreDataManager.shared
+    private let emogis = ["😌", "😊", "😑", "😫", "😣"]
+    private var selectedIndex = 0
     
     private var contentView: AddArticleView {
         view as? AddArticleView ?? AddArticleView()
@@ -31,6 +33,12 @@ final class AddArticleVC: BaseViewController {
         contentView.fatigueSliderView.slider.addTarget(self, action: #selector(sliderChanged(sender: )), for: .allEvents)
         contentView.stressSliderView.slider.addTarget(self, action: #selector(sliderChanged(sender: )), for: .allEvents)
         contentView.intensitySliderView.slider.addTarget(self, action: #selector(sliderChanged(sender: )), for: .allEvents)
+        contentView.emotionsView.buttons.forEach {($0.addTarget(self, action: #selector(emotionSelected(sender: )), for: .touchUpInside))}
+    }
+                                                   
+                          
+    @objc func emotionSelected(sender: UIButton) {
+        selectedIndex = sender.tag
     }
     
     @objc func textfieldChanged(sender: UITextField) {
@@ -51,7 +59,7 @@ final class AddArticleVC: BaseViewController {
         let fatigueAmount = Double(contentView.fatigueSliderView.slider.value)
         let intensityAmount = Double(contentView.intensitySliderView.slider.value)
         
-        let emotion = ""
+        let emotion = emogis[selectedIndex]
         
         let date = Date()
         
