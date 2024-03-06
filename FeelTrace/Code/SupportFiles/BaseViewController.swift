@@ -13,7 +13,6 @@ class BaseViewController: UIViewController {
     var tap = UITapGestureRecognizer()
     
     let dayImages = ["sundayD", "mondayD", "tuesdayD", "wednesdayD", "thursdayD", "fridayD", "saturdayD"]
-    let main = UIStoryboard(name: "Main", bundle: nil)
     let visualEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .dark)
         let view = UIVisualEffectView(effect: blurEffect)

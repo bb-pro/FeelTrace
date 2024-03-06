@@ -59,6 +59,7 @@ final class WorkoutsView: UIView {
     
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.id)
         return tableView
     }()
     
