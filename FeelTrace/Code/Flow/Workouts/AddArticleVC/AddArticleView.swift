@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-import UIKit
-
 final class AddArticleView: UIView {
     
     // MARK: - Properties
@@ -55,17 +53,17 @@ final class AddArticleView: UIView {
         return topStackView
     }()
     
-    private lazy var fatigueSliderView: CustomSliderView = {
+    private(set) lazy var fatigueSliderView: CustomSliderView = {
         let sliderView = CustomSliderView(title: "Fatigue (1 - I’m okay, 10 - I’m exhausted)")
         return sliderView
     }()
     
-    private lazy var stressSliderView: CustomSliderView = {
+    private(set) lazy var stressSliderView: CustomSliderView = {
         let sliderView = CustomSliderView(title: "Stress (1 - I’m okay, 10 - I’m feeling very stressed)")
         return sliderView
     }()
     
-    private lazy var intensitySliderView: CustomSliderView = {
+    private(set) lazy var intensitySliderView: CustomSliderView = {
         let sliderView = CustomSliderView(title: "Intensity (1 - Okay, 10 - It was very hard)")
         return sliderView
     }()
@@ -84,7 +82,8 @@ final class AddArticleView: UIView {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillEqually
-        stack.spacing = 16
+        stack.alignment = .center
+        stack.spacing = 32
         emotionsView.buttons.forEach { btn in
             stack.addArrangedSubview(btn)
         }

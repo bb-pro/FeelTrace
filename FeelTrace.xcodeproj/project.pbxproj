@@ -31,11 +31,12 @@
 		80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF32B97A28E00DC689F /* OnboardingData.swift */; };
 		806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86BB2B98C6120062BD7A /* WorkoutCell.swift */; };
 		806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C02B98DCDA0062BD7A /* Workout.swift */; };
-		806E86C52B98DDA80062BD7A /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* DataManager.swift */; };
+		806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* CoreDataManager.swift */; };
 		806E86CC2B98E32F0062BD7A /* AddArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86CB2B98E32F0062BD7A /* AddArticleView.swift */; };
 		806E86CE2B98EA550062BD7A /* AddArticleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86CD2B98EA550062BD7A /* AddArticleVC.swift */; };
 		806E86D12B98EBD20062BD7A /* CustomSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86D02B98EBD20062BD7A /* CustomSliderView.swift */; };
 		806E86D32B98F0D50062BD7A /* CircleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86D22B98F0D50062BD7A /* CircleButtonView.swift */; };
+		806E86D52B98FF2C0062BD7A /* Date + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86D42B98FF2C0062BD7A /* Date + Extension.swift */; };
 		80F65AF22B97C2C600842272 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F65AF12B97C2C600842272 /* ProfileVC.swift */; };
 		80F65AF42B97C2D600842272 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F65AF32B97C2D600842272 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
@@ -66,11 +67,12 @@
 		80019DF32B97A28E00DC689F /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		806E86BB2B98C6120062BD7A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		806E86C02B98DCDA0062BD7A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
-		806E86C42B98DDA80062BD7A /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		806E86C42B98DDA80062BD7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		806E86CB2B98E32F0062BD7A /* AddArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleView.swift; sourceTree = "<group>"; };
 		806E86CD2B98EA550062BD7A /* AddArticleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleVC.swift; sourceTree = "<group>"; };
 		806E86D02B98EBD20062BD7A /* CustomSliderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSliderView.swift; sourceTree = "<group>"; };
 		806E86D22B98F0D50062BD7A /* CircleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButtonView.swift; sourceTree = "<group>"; };
+		806E86D42B98FF2C0062BD7A /* Date + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Extension.swift"; sourceTree = "<group>"; };
 		80F65AF12B97C2C600842272 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		80F65AF32B97C2D600842272 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,7 +111,6 @@
 				80019DC42B962D8800DC689F /* App */,
 				80019DC52B962D9C00DC689F /* Code */,
 				806E86BD2B98D36F0062BD7A /* Resources */,
-				806E86BE2B98D3B00062BD7A /* DataManager */,
 			);
 			path = FeelTrace;
 			sourceTree = "<group>";
@@ -121,6 +122,7 @@
 				80019DAF2B962B2400DC689F /* SceneDelegate.swift */,
 				80019DBB2B962B2800DC689F /* LaunchScreen.storyboard */,
 				80019DBE2B962B2800DC689F /* Info.plist */,
+				806E86BE2B98D3B00062BD7A /* DataManager */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -128,11 +130,8 @@
 		80019DC52B962D9C00DC689F /* Code */ = {
 			isa = PBXGroup;
 			children = (
-				80019DEC2B979A9C00DC689F /* TabBarController.swift */,
+				806E86D62B98FFCB0062BD7A /* Flow */,
 				80019DDC2B96C3BD00DC689F /* SupportFiles */,
-				80019DD12B96369000DC689F /* Splash */,
-				80019DD22B96369C00DC689F /* Onboarding */,
-				80019DEE2B979E0B00DC689F /* Workouts */,
 			);
 			path = Code;
 			sourceTree = "<group>";
@@ -160,10 +159,12 @@
 		80019DDC2B96C3BD00DC689F /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				80019DEC2B979A9C00DC689F /* TabBarController.swift */,
 				80019DCD2B96315700DC689F /* BaseViewController.swift */,
 				80019DCE2B96315700DC689F /* MyColors.swift */,
 				80019DDD2B96C41100DC689F /* Font + Extention.swift */,
 				80019DE52B97286100DC689F /* CustomViews */,
+				806E86D42B98FF2C0062BD7A /* Date + Extension.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -210,7 +211,7 @@
 			children = (
 				806E86C32B98DD9D0062BD7A /* Models */,
 				80019DB62B962B2400DC689F /* FeelTrace.xcdatamodeld */,
-				806E86C42B98DDA80062BD7A /* DataManager.swift */,
+				806E86C42B98DDA80062BD7A /* CoreDataManager.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -240,6 +241,16 @@
 				806E86D22B98F0D50062BD7A /* CircleButtonView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		806E86D62B98FFCB0062BD7A /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				80019DD12B96369000DC689F /* Splash */,
+				80019DD22B96369C00DC689F /* Onboarding */,
+				80019DEE2B979E0B00DC689F /* Workouts */,
+			);
+			path = Flow;
 			sourceTree = "<group>";
 		};
 		80F65ADD2B97B05A00842272 /* WorkoutsVC */ = {
@@ -338,7 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80F65AF22B97C2C600842272 /* ProfileVC.swift in Sources */,
-				806E86C52B98DDA80062BD7A /* DataManager.swift in Sources */,
+				806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */,
 				806E86D32B98F0D50062BD7A /* CircleButtonView.swift in Sources */,
 				806E86CC2B98E32F0062BD7A /* AddArticleView.swift in Sources */,
 				80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */,
@@ -364,6 +375,7 @@
 				80019DE92B97355000DC689F /* CustomPageControlView.swift in Sources */,
 				80019DF02B979E2D00DC689F /* WorkoutsView.swift in Sources */,
 				80F65AF42B97C2D600842272 /* ProfileView.swift in Sources */,
+				806E86D52B98FF2C0062BD7A /* Date + Extension.swift in Sources */,
 				80019DCF2B96316500DC689F /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

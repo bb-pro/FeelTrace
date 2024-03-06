@@ -43,7 +43,7 @@ final class WorkoutsView: UIView {
         return view
     }()
     
-    private lazy var centerStack: UIStackView = {
+    private(set) lazy var centerStack: UIStackView = {
         let label = UILabel()
         label.font = .customSFFont(.regular, size: 34)
         label.textColor = MyColors.black.color
@@ -57,9 +57,21 @@ final class WorkoutsView: UIView {
         return stackView
     }()
     
+    private(set) lazy var addWorkoutBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.backgroundColor = MyColors.tint.color
+        btn.setTitle("Add workout", for: .normal)
+        btn.setTitleColor(MyColors.white.color, for: .normal)
+        btn.layer.cornerRadius = 20
+        return btn
+    }()
+    
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(WorkoutCell.self, forCellReuseIdentifier: WorkoutCell.id)
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
         return tableView
     }()
     
@@ -80,6 +92,7 @@ final class WorkoutsView: UIView {
         addSubview(titleLabel)
         addSubview(tableView)
         addSubview(centerStack)
+        addSubview(addWorkoutBtn)
     }
     
     private func setUpConstraints() {
@@ -104,7 +117,13 @@ final class WorkoutsView: UIView {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(16)
-            make.right.bottom.equalToSuperview().offset(-16)
+            make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
+        }
+        
+        addWorkoutBtn.snp.makeConstraints { make in
+            make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
+            make.height.equalTo(36)
+            make.width.equalTo(129)
         }
     }
 }

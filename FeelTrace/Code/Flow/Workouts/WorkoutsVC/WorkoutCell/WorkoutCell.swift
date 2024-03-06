@@ -53,12 +53,11 @@ final class WorkoutCell: UITableViewCell {
         return lbl
     }()
     
-    private lazy var emotinsImageView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.snp.makeConstraints { make in
-            make.height.width.equalTo(25)
-        }
-        return imgView
+    private lazy var emotionsAmount: UILabel = {
+        let lbl = UILabel()
+        lbl.font = .customSFFont(.regular, size: 20)
+        lbl.textColor = MyColors.black.color
+        return lbl
     }()
     
     private lazy var separatorView: UIView = {
@@ -98,6 +97,7 @@ final class WorkoutCell: UITableViewCell {
         let lbl = UILabel()
         lbl.font = .customSFFont(.regular, size: 20)
         lbl.textColor = MyColors.black.color
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -105,6 +105,7 @@ final class WorkoutCell: UITableViewCell {
         let lbl = UILabel()
         lbl.font = .customSFFont(.regular, size: 20)
         lbl.textColor = MyColors.black.color
+        lbl.numberOfLines = 0
         return lbl
     }()
 
@@ -112,6 +113,7 @@ final class WorkoutCell: UITableViewCell {
         let lbl = UILabel()
         lbl.font = .customSFFont(.regular, size: 20)
         lbl.textColor = MyColors.black.color
+        lbl.numberOfLines = 0
         return lbl
     }()
     
@@ -124,7 +126,7 @@ final class WorkoutCell: UITableViewCell {
         topStack.axis = .horizontal
         topStack.distribution = .fill
         
-        let stack1 = UIStackView(arrangedSubviews: [emotionsLabel, emotinsImageView])
+        let stack1 = UIStackView(arrangedSubviews: [emotionsLabel, emotionsAmount])
         stack1.axis = .vertical
         stack1.spacing = 8
         stack1.alignment = .leading
@@ -166,6 +168,15 @@ final class WorkoutCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
  
+    func configure(with workout: Workout) {
+        titleLabel.text = workout.title
+        timeLabel.text = workout.time
+        emotionsAmount.text = workout.emotion
+        stressAmount.text = "\(Int(workout.stressAmount * 10))/10"
+        fatigueAmount.text = "\(Int(workout.fatigueAmount * 10))/10"
+        intensityAmount.text = "\(Int(workout.intensityAmount * 10))/10"
+        dateLabel.text = workout.date?.toString()
+    }
     
     func setUpViews() {
         backgroundContentView.addSubview(mainStack)

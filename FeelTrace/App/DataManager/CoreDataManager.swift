@@ -39,4 +39,22 @@ public final class CoreDataManager: NSObject {
         
         appDelegate?.saveContext()
     }
+    
+    public func fetchArticles() -> [Workout] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Workout")
+        
+        do {
+            if let fetchedObjects = try context?.fetch(fetchRequest) as? [Workout] {
+                return fetchedObjects
+            } else {
+                print("Failed to cast fetched objects to [EventModel]")
+            }
+        } catch {
+            print("Error during fetchEvents: \(error)")
+        }
+        
+        return []
+    }
+    
+    
 }
