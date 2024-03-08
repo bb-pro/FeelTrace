@@ -9,7 +9,7 @@ final class OnboardingView: UIView {
     private let categories = Category.categories
     
     private(set) lazy var customPageControl: CustomPageControlView = {
-        let pageControl = CustomPageControlView()
+        let pageControl = CustomPageControlView(numberOfIndicators: 3, currentIndex: 0, progressColor: MyColors.tint.color)
         return pageControl
     }()
     

@@ -189,7 +189,8 @@ final class WorkoutCell: UITableViewCell {
         }
         
         backgroundContentView.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
         }
     }
 }

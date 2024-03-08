@@ -68,5 +68,9 @@ extension WorkoutsVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let workoutInfoVC = WorkoutInfoVC()
+        workoutInfoVC.workout = workouts[indexPath.row]
+        present(workoutInfoVC, animated: true)
+    }
 }

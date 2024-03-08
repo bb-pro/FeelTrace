@@ -9,31 +9,30 @@ import UIKit
 
 final class CustomPageControlView: UIView {
     
-    private let numberOfPages = 3
-    private let width: CGFloat = 40
     private let height: CGFloat = 4
-    private let indicatorSpacing: CGFloat = 8
+    private let indicatorSpacing: Int = 8
     private var indicatorViews = [UIView]()
     private var currentIndex = 0
     
-    init() {
+    init(numberOfIndicators: Int, currentIndex: Int, progressColor: UIColor, width: CGFloat = 40, gap: CGFloat = 4) {
         super.init(frame: .zero)
-        setUpViews()
+        self.currentIndex = currentIndex
+        setUpViews(numberOfIndicators: numberOfIndicators, progressColor: progressColor, width: width, gap: gap)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpViews() {
+    private func setUpViews(numberOfIndicators: Int, progressColor: UIColor, width: CGFloat = 40, gap: CGFloat = 4) {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = indicatorSpacing
+        stackView.spacing = gap
         addSubview(stackView)
         
-        for index in 0..<numberOfPages {
+        for index in 0..<numberOfIndicators {
             let indicatorView = UIView()
-            indicatorView.backgroundColor = index == 0 ? MyColors.tint.color : MyColors.secondaryText.color
+            indicatorView.backgroundColor = index <= currentIndex ? progressColor : UIColor.gray
             stackView.addArrangedSubview(indicatorView)
             indicatorViews.append(indicatorView)
             
@@ -48,17 +47,17 @@ final class CustomPageControlView: UIView {
         }
     }
 
-    
-    func setCurrentPage(index: Int) {
-        guard index >= 0 && index < numberOfPages else {
+    func setCurrentIndex(index: Int, progressColor: UIColor) {
+        guard index >= 0 && index < indicatorViews.count else {
             return
         }
-//        indicatorViews[currentIndex].backgroundColor = MyColors.secondary.color
-        indicatorViews[index].backgroundColor = MyColors.tint.color
+        for i in 0..<indicatorViews.count {
+            indicatorViews[i].backgroundColor = i <= index ? progressColor : UIColor.gray
+        }
         currentIndex = index
     }
     
-    func getCurrentPage() -> Int {
+    func getCurrentIndex() -> Int {
         return currentIndex
     }
 }

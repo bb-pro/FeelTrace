@@ -91,7 +91,7 @@ final class OnboardingVC: BaseViewController {
                 age: age))
         }
         print(userDefaultsManager.getOnboardingData())
-        contentView.customPageControl.setCurrentPage(index: currentPage)
+        contentView.customPageControl.setCurrentIndex(index: currentPage, progressColor: MyColors.tint.color)
     }
     
     private func presentTabBar() {
