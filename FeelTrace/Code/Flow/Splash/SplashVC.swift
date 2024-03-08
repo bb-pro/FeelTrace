@@ -15,6 +15,7 @@ protocol SceneDelegateDelegate: AnyObject {
 
 final class SplashVC: BaseViewController {
     
+    private let userDefaultsManager = UserDefaultsManager.shared
     
     weak var delegate: SceneDelegateDelegate?
     

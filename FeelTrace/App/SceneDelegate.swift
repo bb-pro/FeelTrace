@@ -9,7 +9,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, SceneDelegateDelegate {
     
-
+    private let userDefaultsManager = UserDefaultsManager.shared
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -24,8 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SceneDelegateDelegate {
     }
     
     func changeRootViewController() {
-        window?.rootViewController = OnboardingVC()
+        let data = userDefaultsManager.getOnboardingData()
+    
+        if data.name == "" {
+            window?.rootViewController = OnboardingVC()
+        } else {
+            window?.rootViewController = WorkoutsVC()
+        }
         window?.makeKeyAndVisible()
+
+        
         
     }
 
