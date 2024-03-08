@@ -14,12 +14,15 @@ final class ProfileVC: BaseViewController {
         view as? ProfileView ?? ProfileView()
     }
     
+    weak var delegate: SceneDelegateDelegate?
+    
     override func loadView() {
         view = ProfileView()
         contentView.shareView.actionButton.addTarget(self, action: #selector(sharePressed), for: .touchUpInside)
         contentView.rateView.actionButton.addTarget(self, action: #selector(ratePressed), for: .touchUpInside)
         contentView.usageProfileView.actionButton.addTarget(self, action: #selector(usageProfilePressed), for: .touchUpInside)
         contentView.resetView.actionButton.addTarget(self, action: #selector(resetPressed), for: .touchUpInside)
+        contentView.editButton.addTarget(self, action: #selector(editPressed), for: .touchUpInside)
     }
     
     // MARK: - Actions
@@ -43,5 +46,9 @@ final class ProfileVC: BaseViewController {
 
     @objc func resetPressed() {
         
+    }
+    
+    @objc func editPressed() {
+
     }
 }
