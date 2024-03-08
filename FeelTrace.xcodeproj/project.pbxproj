@@ -31,6 +31,8 @@
 		80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF32B97A28E00DC689F /* OnboardingData.swift */; };
 		802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291A52B9B7E4100F6AC79 /* Double + Extension .swift */; };
 		802291A92B9B9A5100F6AC79 /* SettingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291A82B9B9A5100F6AC79 /* SettingButtonView.swift */; };
+		802291AC2B9BAFA700F6AC79 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291AB2B9BAFA700F6AC79 /* StatsView.swift */; };
+		802291AE2B9BAFBD00F6AC79 /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291AD2B9BAFBD00F6AC79 /* StatsVC.swift */; };
 		806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86BB2B98C6120062BD7A /* WorkoutCell.swift */; };
 		806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C02B98DCDA0062BD7A /* Workout.swift */; };
 		806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* CoreDataManager.swift */; };
@@ -72,6 +74,8 @@
 		80019DF32B97A28E00DC689F /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		802291A52B9B7E4100F6AC79 /* Double + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension .swift"; sourceTree = "<group>"; };
 		802291A82B9B9A5100F6AC79 /* SettingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButtonView.swift; sourceTree = "<group>"; };
+		802291AB2B9BAFA700F6AC79 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		802291AD2B9BAFBD00F6AC79 /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		806E86BB2B98C6120062BD7A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		806E86C02B98DCDA0062BD7A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		806E86C42B98DDA80062BD7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -210,6 +214,15 @@
 			path = SettingButtonView;
 			sourceTree = "<group>";
 		};
+		802291AA2B9BAEEB00F6AC79 /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				802291AB2B9BAFA700F6AC79 /* StatsView.swift */,
+				802291AD2B9BAFBD00F6AC79 /* StatsVC.swift */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
 		806E86BA2B98C5F50062BD7A /* WorkoutCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +282,7 @@
 				80019DD12B96369000DC689F /* Splash */,
 				80019DD22B96369C00DC689F /* Onboarding */,
 				80019DEE2B979E0B00DC689F /* Workouts */,
+				802291AA2B9BAEEB00F6AC79 /* Statistics */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -395,6 +409,7 @@
 				806E86CC2B98E32F0062BD7A /* AddWorkoutView.swift in Sources */,
 				80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */,
 				80019DED2B979B7600DC689F /* TabBarController.swift in Sources */,
+				802291AE2B9BAFBD00F6AC79 /* StatsVC.swift in Sources */,
 				806E86CE2B98EA550062BD7A /* AddWorkoutVC.swift in Sources */,
 				80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */,
 				802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */,
@@ -413,6 +428,7 @@
 				80019DF22B979E3500DC689F /* WorkoutsVC.swift in Sources */,
 				80019DD42B9638D300DC689F /* OnboardingView.swift in Sources */,
 				80019DD02B96316500DC689F /* MyColors.swift in Sources */,
+				802291AC2B9BAFA700F6AC79 /* StatsView.swift in Sources */,
 				80019DE72B972F1B00DC689F /* CustomButtonView.swift in Sources */,
 				806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */,
 				80019DE42B9712C900DC689F /* ProfileButtonView.swift in Sources */,

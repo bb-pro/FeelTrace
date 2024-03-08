@@ -43,7 +43,7 @@ final class TabBarController: UITabBarController {
         workoutVC.tabBarItem.image = .tabIcon1
         let workoutsVCC = UINavigationController(rootViewController: workoutVC)
         
-        let statisticsVC = BaseViewController()
+        let statisticsVC = StatsVC()
         statisticsVC.tabBarItem.title = "Statistics"
         statisticsVC.tabBarItem.image = .tabIcon2
         
