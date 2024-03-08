@@ -49,6 +49,14 @@ class BaseViewController: UIViewController {
     func push(vc: UIViewController) {
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func dismissAllPresentedViewControllers() {
+          var presentedViewController = presentingViewController
+          while let presentedVC = presentedViewController?.presentingViewController {
+              presentedViewController = presentedVC
+          }
+          presentedViewController?.dismiss(animated: true)
+      }
 
     
     func setNavBar() {

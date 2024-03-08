@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class WorkoutsVC: BaseViewController, AddArticleVCDelegate {
+final class WorkoutsVC: BaseViewController, DismissDelegate {
   
     private var contentView: WorkoutsView {
         view as? WorkoutsView ?? WorkoutsView()
     }
     
-    private var workouts = CoreDataManager.shared.fetchArticles() {
+    private var workouts = CoreDataManager.shared.fetchWorkouts() {
         didSet {
             contentView.centerStack.isHidden = !workouts.isEmpty
             contentView.addWorkoutBtn.isHidden = workouts.isEmpty
@@ -31,14 +31,14 @@ final class WorkoutsVC: BaseViewController, AddArticleVCDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        workouts = CoreDataManager.shared.fetchArticles()
+        workouts = CoreDataManager.shared.fetchWorkouts()
         contentView.tableView.reloadData()
     }
     
     // MARK: - Actions
     
     @objc func addPressed() {
-        let addArticleVC = AddArticleVC()
+        let addArticleVC = AddWorkoutVC()
         addArticleVC.delegate = self
         present(addArticleVC, animated: true)
     }
@@ -48,8 +48,8 @@ final class WorkoutsVC: BaseViewController, AddArticleVCDelegate {
         present(profileVC, animated: true)
     }
     
-    func addArticleVCDidDismiss() {
-        workouts = CoreDataManager.shared.fetchArticles()
+    func dismiss() {
+        workouts = CoreDataManager.shared.fetchWorkouts()
     }
     
 }
@@ -70,6 +70,7 @@ extension WorkoutsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutInfoVC = WorkoutInfoVC()
+        workoutInfoVC.delegate = self
         workoutInfoVC.workout = workouts[indexPath.row]
         present(workoutInfoVC, animated: true)
     }

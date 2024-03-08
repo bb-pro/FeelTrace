@@ -18,7 +18,7 @@ class CustomWorkoutProgressView: UIView {
     
  
     private(set) lazy var progressControll: CustomPageControlView = {
-        let controll = CustomPageControlView(numberOfIndicators: 10, currentIndex: 1, progressColor: MyColors.tint.color, width: 34, gap: 2)
+        let controll = CustomPageControlView(numberOfIndicators: 10, currentIndex: 0, progressColor: MyColors.tint.color, width: 34, gap: 2)
         return controll
     }()
     

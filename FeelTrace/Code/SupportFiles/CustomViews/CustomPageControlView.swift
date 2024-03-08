@@ -48,9 +48,9 @@ final class CustomPageControlView: UIView {
     }
 
     func setCurrentIndex(index: Int, progressColor: UIColor) {
-        guard index >= 0 && index < indicatorViews.count else {
-            return
-        }
+//        guard index >= 0 && index < indicatorViews.count else {
+//            return
+//        }
         for i in 0..<indicatorViews.count {
             indicatorViews[i].backgroundColor = i <= index ? progressColor : UIColor.gray
         }

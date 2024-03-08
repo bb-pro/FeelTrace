@@ -21,8 +21,9 @@ public final class CoreDataManager: NSObject {
     }
     
     //MARK: - Workout
+    
+    // Create a new workout entity
     public func createWorkout(title: String, time: String, stressAmount: Double, fatigueAmount: Double, intensityAmount: Double, emotion: String, date: Date) {
-        
         guard let unwrappedContext = context,
               let eventModelDescription = NSEntityDescription.entity(forEntityName: "Workout", in: unwrappedContext) else {
             return
@@ -40,21 +41,39 @@ public final class CoreDataManager: NSObject {
         appDelegate?.saveContext()
     }
     
-    public func fetchArticles() -> [Workout] {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Workout")
+    // Fetch all workouts
+    public func fetchWorkouts() -> [Workout] {
+        let fetchRequest = NSFetchRequest<Workout>(entityName: "Workout")
         
         do {
-            if let fetchedObjects = try context?.fetch(fetchRequest) as? [Workout] {
+            if let fetchedObjects = try context?.fetch(fetchRequest) {
                 return fetchedObjects
             } else {
-                print("Failed to cast fetched objects to [EventModel]")
+                print("Failed to fetch objects")
             }
         } catch {
-            print("Error during fetchEvents: \(error)")
+            print("Error during fetchWorkouts: \(error)")
         }
         
         return []
     }
     
+    // Delete a workout
+    public func deleteWorkout(_ workout: Workout) {
+        context?.delete(workout)
+        appDelegate?.saveContext()
+    }
     
+    // Edit a workout
+    public func editWorkout(_ workout: Workout, title: String, time: String, stressAmount: Double, fatigueAmount: Double, intensityAmount: Double, emotion: String, date: Date) {
+        workout.title = title
+        workout.time = time
+        workout.stressAmount = stressAmount
+        workout.fatigueAmount = fatigueAmount
+        workout.intensityAmount = intensityAmount
+        workout.emotion = emotion
+        workout.date = date
+        
+        appDelegate?.saveContext()
+    }
 }
