@@ -30,6 +30,7 @@
 		80019DF22B979E3500DC689F /* WorkoutsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF12B979E3500DC689F /* WorkoutsVC.swift */; };
 		80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80019DF32B97A28E00DC689F /* OnboardingData.swift */; };
 		802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291A52B9B7E4100F6AC79 /* Double + Extension .swift */; };
+		802291A92B9B9A5100F6AC79 /* SettingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291A82B9B9A5100F6AC79 /* SettingButtonView.swift */; };
 		806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86BB2B98C6120062BD7A /* WorkoutCell.swift */; };
 		806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C02B98DCDA0062BD7A /* Workout.swift */; };
 		806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* CoreDataManager.swift */; };
@@ -70,6 +71,7 @@
 		80019DF12B979E3500DC689F /* WorkoutsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsVC.swift; sourceTree = "<group>"; };
 		80019DF32B97A28E00DC689F /* OnboardingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingData.swift; sourceTree = "<group>"; };
 		802291A52B9B7E4100F6AC79 /* Double + Extension .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double + Extension .swift"; sourceTree = "<group>"; };
+		802291A82B9B9A5100F6AC79 /* SettingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButtonView.swift; sourceTree = "<group>"; };
 		806E86BB2B98C6120062BD7A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		806E86C02B98DCDA0062BD7A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		806E86C42B98DDA80062BD7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -200,6 +202,14 @@
 			path = Workouts;
 			sourceTree = "<group>";
 		};
+		802291A72B9B9A4400F6AC79 /* SettingButtonView */ = {
+			isa = PBXGroup;
+			children = (
+				802291A82B9B9A5100F6AC79 /* SettingButtonView.swift */,
+			);
+			path = SettingButtonView;
+			sourceTree = "<group>";
+		};
 		806E86BA2B98C5F50062BD7A /* WorkoutCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,6 +304,7 @@
 		80F65ADE2B97B06900842272 /* ProfileVC */ = {
 			isa = PBXGroup;
 			children = (
+				802291A72B9B9A4400F6AC79 /* SettingButtonView */,
 				80F65AF12B97C2C600842272 /* ProfileVC.swift */,
 				80F65AF32B97C2D600842272 /* ProfileView.swift */,
 			);
@@ -389,6 +400,7 @@
 				802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */,
 				80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */,
 				806E86FA2B9A54F40062BD7A /* WorkoutInfoVC.swift in Sources */,
+				802291A92B9B9A5100F6AC79 /* SettingButtonView.swift in Sources */,
 				806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */,
 				80019DE22B96C7E800DC689F /* CustomTextFieldView.swift in Sources */,
 				80019DC92B96306800DC689F /* SplashVC.swift in Sources */,

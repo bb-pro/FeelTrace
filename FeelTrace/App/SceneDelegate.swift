@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, SceneDelegateDelegate {
         if data.name == "" {
             window?.rootViewController = OnboardingVC()
         } else {
-            window?.rootViewController = WorkoutsVC()
+            window?.rootViewController = TabBarController()
         }
         window?.makeKeyAndVisible()
 

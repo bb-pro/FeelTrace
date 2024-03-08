@@ -49,6 +49,64 @@ final class ProfileView: UIView {
         return label
     }()
     
+    private(set) lazy var shareView: SettingButtonView = {
+        let view = SettingButtonView()
+        view.setup(
+            with:ButtonDM(
+                        icon: "setting1",
+                        title: "Share app",
+                        textColor: MyColors.tint.color,
+                        backColor: .clear))
+        return view
+    }()
+    
+    private(set) lazy var rateView: SettingButtonView = {
+        let view = SettingButtonView()
+        view.setup(
+            with:ButtonDM(
+                        icon: "setting2",
+                        title: "Rate app",
+                        textColor: MyColors.tint.color,
+                        backColor: .clear))
+        return view
+    }()
+    
+    private(set) lazy var usageProfileView: SettingButtonView = {
+        let view = SettingButtonView()
+        view.setup(
+            with:ButtonDM(
+                        icon: "setting3",
+                        title: "Usage profile",
+                        textColor: MyColors.tint.color,
+                        backColor: .clear))
+        return view
+    }()
+    
+    private(set) lazy var resetView: SettingButtonView = {
+        let view = SettingButtonView()
+        view.setup(
+            with:ButtonDM(
+                        icon: "setting4",
+                        title: "Reset progress",
+                        textColor: MyColors.tint.color,
+                        backColor: .clear))
+        return view
+    }()
+    
+    private lazy var settingsStack: UIStackView = {
+        let topStackView = UIStackView(arrangedSubviews: [shareView, rateView])
+        topStackView.axis = .horizontal
+        topStackView.spacing = 16
+        let bottomStackView = UIStackView(arrangedSubviews: [usageProfileView, resetView])
+        bottomStackView.axis = .horizontal
+        bottomStackView.spacing = 16
+        
+        let mainStack = UIStackView(arrangedSubviews: [topStackView, bottomStackView])
+        mainStack.axis = .vertical
+        mainStack.spacing = 16
+        return mainStack
+    }()
+    
     private(set) lazy var typeButtonStack: UIStackView = createButtonStack()
     
     lazy var typeButtons: [UIButton] = createTypeButtons()
@@ -71,6 +129,7 @@ final class ProfileView: UIView {
         addSubview(profileImageView)
         addSubview(nameLabel)
         addSubview(typeButtonStack)
+        addSubview(settingsStack)
     }
     
     func setUpConstraints() {
@@ -101,6 +160,12 @@ final class ProfileView: UIView {
             make.top.equalTo(nameLabel.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
+        }
+        
+        settingsStack.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalTo(safeAreaLayoutGuide).offset(-36)
+            make.left.equalToSuperview().offset(16)
         }
     }
     
