@@ -5,8 +5,9 @@
 //  Created by Bektemur Mamashayev on 6/3/2024.
 //
 
-import Foundation
 import UIKit
+
+let emojis = ["😌", "😊", "😑", "😫", "😣"]
 
 final class AddWorkoutView: UIView {
     

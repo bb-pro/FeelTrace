@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class CustomTextFieldView: UIView {
-
+    
     let field = UITextField()
     
     init(title: String? = nil,
@@ -47,7 +47,6 @@ class CustomTextFieldView: UIView {
         field.inputAccessoryView = inputAccessoryView
         field.textContentType = .none
         
-       
     }
     
     private func layout() {
@@ -61,6 +60,16 @@ class CustomTextFieldView: UIView {
 }
 
 extension CustomTextFieldView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        // Change border color to black when editing begins
+        self.layer.borderColor = MyColors.black.color.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // Change border color to secondary color when editing ends
+        self.layer.borderColor = MyColors.secondaryText.color.cgColor
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newText = string.replacingOccurrences(of: ",", with: ".")
         
@@ -74,7 +83,6 @@ extension CustomTextFieldView: UITextFieldDelegate {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         guard let text = textField.text else { return }
         
-            self.layer.borderColor = MyColors.black.color.cgColor
-    
+        self.layer.borderColor = MyColors.black.color.cgColor
     }
 }

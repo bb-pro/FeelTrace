@@ -17,6 +17,7 @@ final class StatsView: UIView {
     
     let onboardingData = UserDefaultsManager.shared.getOnboardingData()
     var selectedIndexPath: IndexPath? // Variable to keep track of the selected index
+    var workoutData: [Workout] = [] // Assume Workout is your data model
     
     // MARK: - Elements
     
@@ -46,50 +47,25 @@ final class StatsView: UIView {
         collectionView.backgroundColor = .clear
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(StatsCell.self, forCellWithReuseIdentifier: "StatsCell")
+        collectionView.register(MonthCell.self, forCellWithReuseIdentifier: "MonthCell")
         collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     
-    private(set) lazy var workout1View: SettingButtonView = {
-        let view = SettingButtonView()
-        view.iconImageView.isHidden = true
-        return view
-    }()
-    
-    private(set) lazy var workout2View: SettingButtonView = {
-        let view = SettingButtonView()
-        view.iconImageView.isHidden = true
-        view.containerView.backgroundColor = MyColors.tint.color
-        return view
-    }()
-    
-    private(set) lazy var workout3View: SettingButtonView = {
-        let view = SettingButtonView()
-        view.containerView.backgroundColor = MyColors.tint.color
-        return view
-    }()
-    
-    private(set) lazy var workout4View: SettingButtonView = {
-        let view = SettingButtonView()
-        view.iconImageView.isHidden = true
-        return view
-    }()
-    
-    private lazy var mainStack: UIStackView = {
-        let topStack = UIStackView(arrangedSubviews: [workout1View, workout2View])
-        topStack.axis = .horizontal
-        topStack.spacing = 16
+    private lazy var workoutCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 174, height: 150)
+        layout.minimumInteritemSpacing = 8
+        layout.minimumLineSpacing = 8
         
-        let bottomStack = UIStackView(arrangedSubviews: [workout3View, workout4View])
-        bottomStack.axis = .horizontal
-        bottomStack.spacing = 16
-        
-        let mainStack = UIStackView(arrangedSubviews: [topStack, bottomStack])
-        mainStack.axis = .vertical
-        mainStack.spacing = 16
-        
-        return mainStack
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(StatsCell.self, forCellWithReuseIdentifier: "StatsCell")
+        collectionView.showsVerticalScrollIndicator = true
+        return collectionView
     }()
     
     private(set) lazy var addStatsButton: UIButton = {
@@ -98,10 +74,37 @@ final class StatsView: UIView {
         button.layer.cornerRadius = 18
         button.tintColor = MyColors.white.color
         button.setTitle("Add statistics", for: .normal)
-        button.titleLabel?.font = UIFont.customSFFont(.regular, size: 15) 
+        button.titleLabel?.font = UIFont.customSFFont(.regular, size: 15)
         return button
     }()
-
+    
+    private(set) lazy var addButton: CustomButtonView = {
+        let view = CustomButtonView()
+        view.btnUpdate(item: ButtonDM(
+            icon: "",
+            title: "Add",
+            textColor: MyColors.white.color,
+            backColor: MyColors.tint.color))
+        view.snp.makeConstraints { make in
+            make.height.equalTo(63)
+        }
+        return view
+    }()
+    
+    private(set) lazy var centerStack: UIStackView = {
+        let label = UILabel()
+        label.font = .customSFFont(.regular, size: 34)
+        label.textColor = MyColors.black.color
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Add your first month experience"
+        
+        let stackView = UIStackView(arrangedSubviews: [label, addButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 20
+        return stackView
+    }()
     
     //MARK: - Initialization
     
@@ -119,8 +122,9 @@ final class StatsView: UIView {
         addSubview(profileButton)
         addSubview(titleLabel)
         addSubview(collectionView)
-        addSubview(mainStack)
+        addSubview(workoutCollectionView)
         addSubview(addStatsButton)
+        addSubview(centerStack)
     }
     
     private func setUpConstraints() {
@@ -143,10 +147,10 @@ final class StatsView: UIView {
             make.height.equalTo(44)
         }
         
-        mainStack.snp.makeConstraints { make in
+        workoutCollectionView.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(16)
             make.left.equalToSuperview().offset(16)
-            make.right.equalToSuperview().offset(-16)
+            make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
         }
         
         addStatsButton.snp.makeConstraints { make in
@@ -154,57 +158,62 @@ final class StatsView: UIView {
             make.height.equalTo(36)
             make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
         }
+        
+        centerStack.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
     }
 }
 
 extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return months.count
+        if collectionView == self.collectionView {
+            return months.count
+        } else {
+            return workoutData.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatsCell", for: indexPath) as! StatsCell
-        cell.titleLabel.text = months[indexPath.row]
-        cell.layer.cornerRadius = 18
-        if indexPath == selectedIndexPath {
-            cell.backgroundColor = MyColors.tint.color
+        if collectionView == self.collectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MonthCell", for: indexPath) as! MonthCell
+            cell.titleLabel.text = months[indexPath.row]
+            cell.layer.cornerRadius = 18
+            if indexPath == selectedIndexPath {
+                cell.backgroundColor = MyColors.tint.color
+            } else {
+                cell.backgroundColor = MyColors.secondary.color
+            }
+            return cell
         } else {
-            cell.backgroundColor = MyColors.secondary.color
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatsCell", for: indexPath) as! StatsCell
+            // Configure the cell with your workout data
+            // Assuming workoutData contains Workout objects
+//            let workout = workoutData[indexPath.item]
+//            cell.workoutView.titleLabel.text = workout.title
+//            cell.workoutView.iconImageView.image = UIImage(named: workout.iconName)
+            // Configure other properties of workout view if needed
+            return cell
         }
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 98, height: 36)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Update selectedIndexPath
-        selectedIndexPath = indexPath
-        // Reload the collection view to reflect changes in cell appearance
-        collectionView.reloadData()
-        // Notify the delegate of the selected month
-        delegate?.selectedMonth(indexPath: indexPath)
-    }
-}
-
-final class StatsCell: UICollectionViewCell {
-    
-    let titleLabel = UILabel()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        titleLabel.font = .customSFFont(.regular, size: 15)
-        titleLabel.textColor = MyColors.white.color
-        titleLabel.textAlignment = .center
-        addSubview(titleLabel)
-        
-        titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        if collectionView == self.collectionView {
+            return CGSize(width: 98, height: 36)
+        } else {
+            return CGSize(width: 174, height: 150)
         }
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.collectionView {
+            selectedIndexPath = indexPath
+            collectionView.reloadData()
+            delegate?.selectedMonth(indexPath: indexPath)
+        } else {
+            // Handle selection of workout cell if needed
+        }
     }
 }

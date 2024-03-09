@@ -32,6 +32,7 @@ class CircleButtonView: UIView {
             let button = UIButton(type: .system)
             button.setTitle(title, for: .normal)
             button.tag = index
+            button.titleLabel?.font = .customSFFont(.regular, size: 28)
             button.addTarget(self, action: #selector(buttonPressed(_:)), for: .touchUpInside)
             button.layer.cornerRadius = buttonSize / 2
             button.clipsToBounds = true

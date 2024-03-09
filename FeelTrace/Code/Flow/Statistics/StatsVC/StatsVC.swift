@@ -9,8 +9,6 @@ import UIKit
 
 final class StatsVC: BaseViewController, StatsViewDelegate {
    
-    
-    
     private var contentView: StatsView {
         view as? StatsView ?? StatsView()
     }
@@ -19,6 +17,9 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
         view = StatsView()
         contentView.profileButton.addTarget(self, action: #selector(profilePressed), for: .touchUpInside)
         contentView.delegate = self
+        contentView.addButton.actionButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+        contentView.addStatsButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
+//        contentView.mainStack.isHidden = /*true*/
     }
     
     func selectedMonth(indexPath: IndexPath) {
@@ -26,6 +27,11 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
     }
     
     // MARK: - Actions
+    
+    @objc func addPressed() {
+        let addStatsVC = AddStatsVC()
+        present(addStatsVC, animated: true)
+    }
     
     @objc func profilePressed() {
         let profileVC = ProfileVC()
