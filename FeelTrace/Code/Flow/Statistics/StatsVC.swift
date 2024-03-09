@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class StatsVC: BaseViewController {
+final class StatsVC: BaseViewController, StatsViewDelegate {
+   
+    
     
     private var contentView: StatsView {
         view as? StatsView ?? StatsView()
@@ -16,6 +18,11 @@ final class StatsVC: BaseViewController {
     override func loadView() {
         view = StatsView()
         contentView.profileButton.addTarget(self, action: #selector(profilePressed), for: .touchUpInside)
+        contentView.delegate = self
+    }
+    
+    func selectedMonth(indexPath: IndexPath) {
+        print(months[indexPath.item])
     }
     
     // MARK: - Actions

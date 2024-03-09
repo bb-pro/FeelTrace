@@ -8,7 +8,7 @@
 import UIKit
 
 final class SettingButtonView: UIView {
-    private let containerView: UIView = {
+    let containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 30
         view.layer.borderWidth = 1
@@ -16,13 +16,19 @@ final class SettingButtonView: UIView {
         return view
     }()
     
-    private let iconImageView: UIImageView = {
+    let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    private let textLabel: UILabel = {
+    let topLabel: UILabel = {
+        let label = UILabel()
+        label.font = .customSFFont(.regular, size: 34)
+        return label
+    }()
+    
+    let textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.numberOfLines = 1
@@ -52,6 +58,7 @@ final class SettingButtonView: UIView {
     
     private func setupViews() {
         addSubview(containerView)
+        containerView.addSubview(topLabel)
         containerView.addSubview(iconImageView)
         containerView.addSubview(textLabel)
         addSubview(actionButton)
@@ -67,6 +74,11 @@ final class SettingButtonView: UIView {
             make.leading.equalTo(containerView.snp.leading).offset(16)
             make.width.equalTo(37)
             make.height.equalTo(41)
+        }
+        
+        topLabel.snp.makeConstraints { make in
+            make.top.equalTo(containerView.snp.top).offset(20)
+            make.leading.equalTo(containerView.snp.leading).offset(16)
         }
         
         textLabel.snp.makeConstraints { make in
