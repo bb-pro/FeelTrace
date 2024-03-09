@@ -16,7 +16,11 @@ final class AddStatsVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = AddStatsView()
-
+        contentView.saveBtn.addTarget(self, action: #selector(savePressed), for: .touchUpInside)
     }
 
+    // MARK: - Actions
+    @objc func savePressed() {
+        dismiss(animated: true)
+    }
 }

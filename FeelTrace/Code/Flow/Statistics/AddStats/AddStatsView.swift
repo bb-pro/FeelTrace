@@ -54,6 +54,45 @@ final class AddStatsView: UIView {
         return stack
     }()
     
+    private(set) lazy var chooseMonthField: CustomTextFieldView = {
+        let view = CustomTextFieldView()
+        view.snp.makeConstraints { make in
+            make.height.equalTo(62)
+        }
+        return view
+    }()
+    
+    private(set) lazy var workoutTypeField: CustomTextFieldView = {
+        let view = CustomTextFieldView()
+        return view
+    }()
+    
+    private(set) lazy var timeSpentField: CustomTextFieldView = {
+        let view = CustomTextFieldView()
+        return view
+    }()
+    
+    private(set) lazy var addAnotherBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.backgroundColor = MyColors.tint.color
+        btn.tintColor = MyColors.white.color
+        btn.titleLabel?.font = .customSFFont(.regular, size: 15)
+        btn.setTitle("Add another workout", for: .normal)
+        btn.snp.makeConstraints { make in
+            make.height.equalTo(36)
+            make.width.equalTo(185)
+        }
+        btn.layer.cornerRadius = 18
+        return btn
+    }()
+    
+    private(set) lazy var fieldStack: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [chooseMonthField, workoutTypeField, timeSpentField])
+        stackView.axis = .vertical
+        stackView.spacing = 16
+        return stackView
+    }()
+    
     //MARK: - Initialization
     
     override init(frame: CGRect) {
@@ -73,7 +112,10 @@ final class AddStatsView: UIView {
         addSubview(saveBtn)
         addSubview(emotionsLabel)
         addSubview(emotionsStack)
+        addSubview(addAnotherBtn)
+        addSubview(fieldStack)
     }
+
     
     func setUpConstraints() {
         topImgView.snp.makeConstraints { make in
@@ -99,6 +141,17 @@ final class AddStatsView: UIView {
         emotionsStack.snp.makeConstraints { make in
             make.top.equalTo(emotionsLabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
+        }
+        
+        fieldStack.snp.makeConstraints { make in
+            make.top.equalTo(emotionsStack.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
+        
+        addAnotherBtn.snp.makeConstraints { make in
+            make.top.equalTo(fieldStack.snp.bottom).offset(16)
+            make.right.equalToSuperview().offset(-16)
         }
     }
 }
