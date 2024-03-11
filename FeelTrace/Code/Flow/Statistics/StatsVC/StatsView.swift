@@ -7,6 +7,9 @@
 
 import UIKit
 
+import UIKit
+import CoreData
+
 protocol StatsViewDelegate: AnyObject {
     func selectedMonth(indexPath: IndexPath)
 }
@@ -17,7 +20,18 @@ final class StatsView: UIView {
     
     let onboardingData = UserDefaultsManager.shared.getOnboardingData()
     var selectedIndexPath: IndexPath? // Variable to keep track of the selected index
-    var workoutData: [Workout] = [] // Assume Workout is your data model
+    var allStats: [Stats] = CoreDataManager.shared.fetchAllStats()
+    
+    var selectedMonthIndex: Int16? {
+        didSet {
+            filterStatsByMonth()
+        }
+    }
+    var filteredStats: [Stats] = CoreDataManager.shared.fetchAllStats() {
+        didSet {
+            workoutCollectionView.reloadData()
+        }
+    }
     
     // MARK: - Elements
     
@@ -40,7 +54,7 @@ final class StatsView: UIView {
         return btn
     }()
     
-    private lazy var collectionView: UICollectionView = {
+    private(set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -52,7 +66,7 @@ final class StatsView: UIView {
         return collectionView
     }()
     
-    private lazy var workoutCollectionView: UICollectionView = {
+    private(set) lazy var workoutCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: 174, height: 150)
@@ -112,6 +126,7 @@ final class StatsView: UIView {
         super.init(frame: frame)
         setUpViews()
         setUpConstraints()
+        fetchAllStatsFromCoreData()
     }
     
     required init?(coder: NSCoder) {
@@ -165,6 +180,22 @@ final class StatsView: UIView {
             make.right.equalToSuperview().offset(-16)
         }
     }
+    
+    // MARK: - Core Data
+    
+    private func fetchAllStatsFromCoreData() {
+        allStats = CoreDataManager.shared.fetchAllStats()
+    }
+    
+    // MARK: - Filtering
+    
+    private func filterStatsByMonth() {
+        if let selectedMonthIndex = selectedMonthIndex {
+            filteredStats = allStats.filter { $0.monthIndex == selectedMonthIndex }
+        } else {
+            filteredStats = allStats
+        }
+    }
 }
 
 extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -172,7 +203,7 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         if collectionView == self.collectionView {
             return months.count
         } else {
-            return workoutData.count
+            return filteredStats.count
         }
     }
     
@@ -189,12 +220,8 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatsCell", for: indexPath) as! StatsCell
-            // Configure the cell with your workout data
-            // Assuming workoutData contains Workout objects
-//            let workout = workoutData[indexPath.item]
-//            cell.workoutView.titleLabel.text = workout.title
-//            cell.workoutView.iconImageView.image = UIImage(named: workout.iconName)
-            // Configure other properties of workout view if needed
+            let stat = filteredStats[indexPath.row]
+            cell.configure(with: stat)
             return cell
         }
     }
@@ -210,6 +237,7 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             selectedIndexPath = indexPath
+            selectedMonthIndex = Int16(indexPath.row + 1) // Assuming month index starts from 1
             collectionView.reloadData()
             delegate?.selectedMonth(indexPath: indexPath)
         } else {

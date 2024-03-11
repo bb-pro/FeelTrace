@@ -24,6 +24,7 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
     
     func selectedMonth(indexPath: IndexPath) {
         print(months[indexPath.item])
+//        contentView.collectionView.reloadData()
     }
     
     // MARK: - Actions

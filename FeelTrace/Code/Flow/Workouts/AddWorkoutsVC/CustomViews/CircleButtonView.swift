@@ -12,7 +12,7 @@ class CircleButtonView: UIView {
     
     var buttonTapped: ((String) -> Void)?
     private(set) var buttons = [UIButton]()
-    private var selectedIndex: Int?
+    var selectedIndex: Int?
     
     private let buttonTitles: [String]
     private let buttonSize: CGFloat = 44

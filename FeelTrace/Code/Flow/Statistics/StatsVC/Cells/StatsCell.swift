@@ -24,8 +24,12 @@ final class StatsCell: UICollectionViewCell {
         }
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(with stats: Stats) {
+        // Assuming the 'workoutType' and 'timeSpent' properties are optional
+        workoutView.setup(with: ButtonDM(icon: "", title: stats.workoutType ?? "", textColor: MyColors.tint.color, backColor: MyColors.white.color))
     }
 }

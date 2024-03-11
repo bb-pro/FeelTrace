@@ -37,6 +37,7 @@
 		802291B42B9CC40A00F6AC79 /* AddStatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291B32B9CC40A00F6AC79 /* AddStatsVC.swift */; };
 		802291B72B9CD25600F6AC79 /* MonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291B62B9CD25600F6AC79 /* MonthCell.swift */; };
 		802291B92B9CD2A800F6AC79 /* StatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802291B82B9CD2A800F6AC79 /* StatsCell.swift */; };
+		803A46562B9DC762001BA072 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803A46552B9DC762001BA072 /* Stats.swift */; };
 		806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86BB2B98C6120062BD7A /* WorkoutCell.swift */; };
 		806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C02B98DCDA0062BD7A /* Workout.swift */; };
 		806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* CoreDataManager.swift */; };
@@ -84,6 +85,7 @@
 		802291B32B9CC40A00F6AC79 /* AddStatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStatsVC.swift; sourceTree = "<group>"; };
 		802291B62B9CD25600F6AC79 /* MonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthCell.swift; sourceTree = "<group>"; };
 		802291B82B9CD2A800F6AC79 /* StatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsCell.swift; sourceTree = "<group>"; };
+		803A46552B9DC762001BA072 /* Stats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
 		806E86BB2B98C6120062BD7A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		806E86C02B98DCDA0062BD7A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		806E86C42B98DDA80062BD7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		806E86C32B98DD9D0062BD7A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				803A46552B9DC762001BA072 /* Stats.swift */,
 				806E86C02B98DCDA0062BD7A /* Workout.swift */,
 			);
 			path = Models;
@@ -451,6 +454,7 @@
 				80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */,
 				802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */,
 				80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */,
+				803A46562B9DC762001BA072 /* Stats.swift in Sources */,
 				806E86FA2B9A54F40062BD7A /* WorkoutInfoVC.swift in Sources */,
 				802291A92B9B9A5100F6AC79 /* SettingButtonView.swift in Sources */,
 				802291B22B9CC3EC00F6AC79 /* AddStatsView.swift in Sources */,

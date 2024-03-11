@@ -76,4 +76,58 @@ public final class CoreDataManager: NSObject {
         
         appDelegate?.saveContext()
     }
+    
+    // MARK: - Stats
+    
+    // Create a new stats entity
+    
+    public func createStat(workoutType: String, monthIndex: Int16, timeSpent: String, emotionIndex: Int16) {
+        guard let unwrappedContext = context,
+              let statModelDescription = NSEntityDescription.entity(forEntityName: "Stats", in: unwrappedContext) else {
+            return
+        }
+
+        let stat = Stats(entity: statModelDescription, insertInto: unwrappedContext)
+        stat.workoutType = workoutType
+        stat.monthIndex = monthIndex
+        stat.timeSpent = timeSpent
+        stat.emotionIndex = emotionIndex
+
+        appDelegate?.saveContext()
+    }
+
+    // Fetch stats for a particular month
+    public func fetchStats(forMonth monthIndex: Int16) -> [Stats] {
+        let fetchRequest: NSFetchRequest<Stats> = Stats.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "monthIndex == %d", monthIndex)
+
+        do {
+            if let fetchedObjects = try context?.fetch(fetchRequest) {
+                return fetchedObjects
+            } else {
+                print("Failed to fetch stats")
+            }
+        } catch {
+            print("Error during fetchStats: \(error)")
+        }
+
+        return []
+    }
+
+    // Fetch all stats
+    public func fetchAllStats() -> [Stats] {
+        let fetchRequest: NSFetchRequest<Stats> = Stats.fetchRequest()
+
+        do {
+            if let fetchedObjects = try context?.fetch(fetchRequest) {
+                return fetchedObjects
+            } else {
+                print("Failed to fetch stats")
+            }
+        } catch {
+            print("Error during fetchAllStats: \(error)")
+        }
+
+        return []
+    }
 }
