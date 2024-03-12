@@ -97,10 +97,14 @@ final class SettingButtonView: UIView {
         containerView.layer.cornerRadius = 18
         textLabel.textColor = item.textColor
         textLabel.text = item.title
-        iconImageView.image = UIImage(named: item.icon)
-        iconImageView.tintColor = item.textColor
+        if !item.icon.isEmpty {
+            iconImageView.image = UIImage(named: item.icon)
+            iconImageView.tintColor = item.textColor
+        } else {
+            iconImageView.image = nil
+        }
     }
-    
+
     
     // MARK: - Action
     

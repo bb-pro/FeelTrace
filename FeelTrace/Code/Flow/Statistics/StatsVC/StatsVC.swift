@@ -19,7 +19,10 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
         contentView.delegate = self
         contentView.addButton.actionButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
         contentView.addStatsButton.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
-//        contentView.mainStack.isHidden = /*true*/
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        contentView.refreshData()
     }
     
     func selectedMonth(indexPath: IndexPath) {
@@ -31,6 +34,7 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
     
     @objc func addPressed() {
         let addStatsVC = AddStatsVC()
+        addStatsVC.delegate = self
         present(addStatsVC, animated: true)
     }
     
@@ -38,4 +42,12 @@ final class StatsVC: BaseViewController, StatsViewDelegate {
         let profileVC = ProfileVC()
         present(profileVC, animated: true)
     }
+}
+
+// MARK: - Dismiss delegate
+extension StatsVC: DismissDelegate {
+    func dismiss() {
+        contentView.refreshData()
+    }
+    
 }

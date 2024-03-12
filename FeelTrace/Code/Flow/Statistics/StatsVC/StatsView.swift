@@ -20,7 +20,11 @@ final class StatsView: UIView {
     
     let onboardingData = UserDefaultsManager.shared.getOnboardingData()
     var selectedIndexPath: IndexPath? // Variable to keep track of the selected index
-    var allStats: [Stats] = CoreDataManager.shared.fetchAllStats()
+    var allStats: [Stats] = CoreDataManager.shared.fetchAllStats() {
+        didSet {
+            centerStack.isHidden = !allStats.isEmpty
+        }
+    }
     
     var selectedMonthIndex: Int16? {
         didSet {
@@ -29,6 +33,7 @@ final class StatsView: UIView {
     }
     var filteredStats: [Stats] = CoreDataManager.shared.fetchAllStats() {
         didSet {
+            centerStack.isHidden = !filteredStats.isEmpty
             workoutCollectionView.reloadData()
         }
     }
@@ -181,10 +186,35 @@ final class StatsView: UIView {
         }
     }
     
+    func calculateRecentEmotionAndTime() -> (emotionIndex: Int, totalTime: Int) {
+        var emotionCount = Array(repeating: 0, count: emojis.count)
+        var totalTimeSpent = 0
+        
+        for stat in filteredStats {
+            emotionCount[Int(stat.emotionIndex)]
+            totalTimeSpent += Int(stat.timeSpent ?? "0") ?? 0
+        }
+        
+        guard let maxIndex = emotionCount.enumerated().max(by: { $0.element < $1.element })?.offset else {
+            return (0, totalTimeSpent)
+        }
+        
+        return (maxIndex, totalTimeSpent)
+    }
+
     // MARK: - Core Data
     
     private func fetchAllStatsFromCoreData() {
         allStats = CoreDataManager.shared.fetchAllStats()
+        print(allStats)
+    }
+    
+    func refreshData() {
+        allStats = CoreDataManager.shared.fetchAllStats()
+        
+        filterStatsByMonth()
+        
+        workoutCollectionView.reloadData()
     }
     
     // MARK: - Filtering
@@ -196,6 +226,30 @@ final class StatsView: UIView {
             filteredStats = allStats
         }
     }
+    
+    func configureStatsCell(cell: StatsCell, indexPath: IndexPath) {
+        if indexPath.row < filteredStats.count {
+            let stat = filteredStats[indexPath.row]
+            if indexPath.row % 4 == 0 {
+                cell.configure(stats: stat, background: MyColors.white.color, tintcolor: MyColors.tint.color)
+            } else if indexPath.row % 4 == 1 || indexPath.row % 4 == 2 {
+                cell.configure(stats: stat, background: MyColors.tint.color, tintcolor: MyColors.white.color)
+            } else {
+                cell.workoutView.containerView.backgroundColor = MyColors.white.color
+            }
+        } else if indexPath.row == filteredStats.count {
+            let (emotionIndex, totalTimeSpent) = calculateRecentEmotionAndTime()
+            cell.workoutView.topLabel.text = emojis[emotionIndex]
+            cell.workoutView.textLabel.text = "Emotions"
+        } else {
+            let (emotionIndex, totalTimeSpent) = calculateRecentEmotionAndTime()
+//            cell.workoutView.topLabel.text = emojis[emotionIndex]
+            cell.workoutView.topLabel.text = "\((Float(totalTimeSpent) / 60).rounded())"
+            print("hours spent")
+            print(totalTimeSpent/60)
+            cell.workoutView.textLabel.text = "hours spent"
+        }
+    }
 }
 
 extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -203,7 +257,12 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
         if collectionView == self.collectionView {
             return months.count
         } else {
-            return filteredStats.count
+            if !filteredStats.isEmpty {
+                return filteredStats.count + 2
+            } else {
+                return 0
+            }
+            
         }
     }
     
@@ -220,8 +279,7 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "StatsCell", for: indexPath) as! StatsCell
-            let stat = filteredStats[indexPath.row]
-            cell.configure(with: stat)
+            configureStatsCell(cell: cell, indexPath: indexPath)
             return cell
         }
     }
@@ -237,11 +295,10 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
             selectedIndexPath = indexPath
-            selectedMonthIndex = Int16(indexPath.row + 1) // Assuming month index starts from 1
+            selectedMonthIndex = Int16(indexPath.row)
             collectionView.reloadData()
             delegate?.selectedMonth(indexPath: indexPath)
         } else {
-            // Handle selection of workout cell if needed
         }
     }
 }

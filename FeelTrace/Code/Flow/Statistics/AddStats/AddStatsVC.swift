@@ -14,6 +14,8 @@ final class AddStatsVC: BaseViewController {
     
     private let dataManager = CoreDataManager.shared
 
+    weak var delegate: DismissDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view = AddStatsView()
@@ -31,6 +33,7 @@ final class AddStatsVC: BaseViewController {
         contentView.timeSpentField.field.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         contentView.timeSpentField2.field.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         contentView.workoutTypeField.field.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        contentView.workoutTypeField2.field.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
 
     private func observeTextFields() {
@@ -55,17 +58,21 @@ final class AddStatsVC: BaseViewController {
         {
             return
         }
-        let monthIndex = contentView.monthMenu.tag
+        let monthIndex = contentView.selectMonth(contentView.monthButton)
         let emotionIndex = contentView.selectMonth(contentView.monthButton)
         
-        print(timeSpent1, workoutType, monthIndex, emotionIndex)
+        if let timeSpent2 = contentView.timeSpentField2.field.text,
+           let workoutType2 = contentView.workoutTypeField2.field.text {
+            dataManager.createStat(workoutType: workoutType2, monthIndex: Int16(monthIndex), timeSpent: "\(timeSpent2)", emotionIndex: Int16(emotionIndex))
+        }
 
-        // Save into Core Data
+
         dataManager.createStat(workoutType: workoutType, monthIndex: Int16(monthIndex), timeSpent: "\(timeSpent1)", emotionIndex: Int16(emotionIndex))
 
 
         dismiss(animated: true)
         let data = dataManager.fetchAllStats()
+        delegate?.dismiss()
         print(data.count)
     }
 
