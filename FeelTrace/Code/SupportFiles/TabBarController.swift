@@ -1,6 +1,6 @@
 //
 //  TabBarController.swift
-//  Football136
+//  
 //
 //  Created by . on 01/12/23.
 //
@@ -51,7 +51,7 @@ final class TabBarController: UITabBarController {
         notesVC.tabBarItem.title = "Notes"
         notesVC.tabBarItem.image = .tabIcon3
         
-        let postsVC = BaseViewController()
+        let postsVC = PostsVC()
         postsVC.tabBarItem.title = "Posts"
         postsVC.tabBarItem.image = .tabIcon4
         

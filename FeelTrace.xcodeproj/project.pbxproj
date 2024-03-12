@@ -46,6 +46,12 @@
 		8067F6792BA0D79400EFA528 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F6782BA0D79400EFA528 /* NoteCell.swift */; };
 		8067F67C2BA0DB6B00EFA528 /* NoteInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F67B2BA0DB6B00EFA528 /* NoteInfoVC.swift */; };
 		8067F67E2BA0DB7900EFA528 /* NoteInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F67D2BA0DB7900EFA528 /* NoteInfoView.swift */; };
+		8067F6812BA0E16700EFA528 /* PostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F6802BA0E16700EFA528 /* PostsVC.swift */; };
+		8067F6832BA0E31600EFA528 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F6822BA0E31600EFA528 /* PostView.swift */; };
+		8067F6862BA0E4AC00EFA528 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F6852BA0E4AC00EFA528 /* PostCell.swift */; };
+		8067F6882BA0E64500EFA528 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F6872BA0E64500EFA528 /* Post.swift */; };
+		8067F68C2BA0EB6C00EFA528 /* PostInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F68B2BA0EB6C00EFA528 /* PostInfoView.swift */; };
+		8067F68E2BA0EBFB00EFA528 /* PostInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067F68D2BA0EBFB00EFA528 /* PostInfoVC.swift */; };
 		806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86BB2B98C6120062BD7A /* WorkoutCell.swift */; };
 		806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C02B98DCDA0062BD7A /* Workout.swift */; };
 		806E86C52B98DDA80062BD7A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806E86C42B98DDA80062BD7A /* CoreDataManager.swift */; };
@@ -102,6 +108,12 @@
 		8067F6782BA0D79400EFA528 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		8067F67B2BA0DB6B00EFA528 /* NoteInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoVC.swift; sourceTree = "<group>"; };
 		8067F67D2BA0DB7900EFA528 /* NoteInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteInfoView.swift; sourceTree = "<group>"; };
+		8067F6802BA0E16700EFA528 /* PostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsVC.swift; sourceTree = "<group>"; };
+		8067F6822BA0E31600EFA528 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		8067F6852BA0E4AC00EFA528 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		8067F6872BA0E64500EFA528 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		8067F68B2BA0EB6C00EFA528 /* PostInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoView.swift; sourceTree = "<group>"; };
+		8067F68D2BA0EBFB00EFA528 /* PostInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoVC.swift; sourceTree = "<group>"; };
 		806E86BB2B98C6120062BD7A /* WorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCell.swift; sourceTree = "<group>"; };
 		806E86C02B98DCDA0062BD7A /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
 		806E86C42B98DDA80062BD7A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
@@ -323,6 +335,42 @@
 			path = NoteInfoVC;
 			sourceTree = "<group>";
 		};
+		8067F67F2BA0E15A00EFA528 /* Posts */ = {
+			isa = PBXGroup;
+			children = (
+				8067F68A2BA0EB5F00EFA528 /* PostInfoVC */,
+				8067F6892BA0EB5500EFA528 /* PostsVC */,
+			);
+			path = Posts;
+			sourceTree = "<group>";
+		};
+		8067F6842BA0E4A200EFA528 /* PostCell */ = {
+			isa = PBXGroup;
+			children = (
+				8067F6852BA0E4AC00EFA528 /* PostCell.swift */,
+			);
+			path = PostCell;
+			sourceTree = "<group>";
+		};
+		8067F6892BA0EB5500EFA528 /* PostsVC */ = {
+			isa = PBXGroup;
+			children = (
+				8067F6842BA0E4A200EFA528 /* PostCell */,
+				8067F6802BA0E16700EFA528 /* PostsVC.swift */,
+				8067F6822BA0E31600EFA528 /* PostView.swift */,
+			);
+			path = PostsVC;
+			sourceTree = "<group>";
+		};
+		8067F68A2BA0EB5F00EFA528 /* PostInfoVC */ = {
+			isa = PBXGroup;
+			children = (
+				8067F68B2BA0EB6C00EFA528 /* PostInfoView.swift */,
+				8067F68D2BA0EBFB00EFA528 /* PostInfoVC.swift */,
+			);
+			path = PostInfoVC;
+			sourceTree = "<group>";
+		};
 		806E86BA2B98C5F50062BD7A /* WorkoutCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +403,7 @@
 				803A46552B9DC762001BA072 /* Stats.swift */,
 				806E86C02B98DCDA0062BD7A /* Workout.swift */,
 				8067F6742BA0D26F00EFA528 /* WorkoutNote+CoreDataProperties.swift */,
+				8067F6872BA0E64500EFA528 /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -386,6 +435,7 @@
 				80019DEE2B979E0B00DC689F /* Workouts */,
 				802291AA2B9BAEEB00F6AC79 /* Statistics */,
 				803A465A2B9FDE49001BA072 /* Notes */,
+				8067F67F2BA0E15A00EFA528 /* Posts */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -512,6 +562,7 @@
 				806E86CC2B98E32F0062BD7A /* AddWorkoutView.swift in Sources */,
 				80019DB82B962B2400DC689F /* FeelTrace.xcdatamodeld in Sources */,
 				8067F6792BA0D79400EFA528 /* NoteCell.swift in Sources */,
+				8067F68C2BA0EB6C00EFA528 /* PostInfoView.swift in Sources */,
 				80019DED2B979B7600DC689F /* TabBarController.swift in Sources */,
 				802291AE2B9BAFBD00F6AC79 /* StatsVC.swift in Sources */,
 				8067F67E2BA0DB7900EFA528 /* NoteInfoView.swift in Sources */,
@@ -519,15 +570,18 @@
 				806E86CE2B98EA550062BD7A /* AddWorkoutVC.swift in Sources */,
 				80019DF42B97A28E00DC689F /* OnboardingData.swift in Sources */,
 				802291A62B9B7E4100F6AC79 /* Double + Extension .swift in Sources */,
+				8067F6862BA0E4AC00EFA528 /* PostCell.swift in Sources */,
 				80019DD92B963DEE00DC689F /* OnboardingVC.swift in Sources */,
 				8067F65C2B9FE12F00EFA528 /* NotesView.swift in Sources */,
 				8067F65D2B9FE12F00EFA528 /* NotesVC.swift in Sources */,
+				8067F6812BA0E16700EFA528 /* PostsVC.swift in Sources */,
 				803A46562B9DC762001BA072 /* Stats.swift in Sources */,
 				806E86FA2B9A54F40062BD7A /* WorkoutInfoVC.swift in Sources */,
 				8067F6602B9FE17900EFA528 /* AddNotesVC.swift in Sources */,
 				802291A92B9B9A5100F6AC79 /* SettingButtonView.swift in Sources */,
 				802291B22B9CC3EC00F6AC79 /* AddStatsView.swift in Sources */,
 				806E86BC2B98C6120062BD7A /* WorkoutCell.swift in Sources */,
+				8067F6882BA0E64500EFA528 /* Post.swift in Sources */,
 				80019DE22B96C7E800DC689F /* CustomTextFieldView.swift in Sources */,
 				80019DC92B96306800DC689F /* SplashVC.swift in Sources */,
 				80019DC72B962DB100DC689F /* SplashView.swift in Sources */,
@@ -544,8 +598,10 @@
 				802291B42B9CC40A00F6AC79 /* AddStatsVC.swift in Sources */,
 				802291AC2B9BAFA700F6AC79 /* StatsView.swift in Sources */,
 				8067F67C2BA0DB6B00EFA528 /* NoteInfoVC.swift in Sources */,
+				8067F68E2BA0EBFB00EFA528 /* PostInfoVC.swift in Sources */,
 				80019DE72B972F1B00DC689F /* CustomButtonView.swift in Sources */,
 				806E86C22B98DCDA0062BD7A /* Workout.swift in Sources */,
+				8067F6832BA0E31600EFA528 /* PostView.swift in Sources */,
 				80019DE42B9712C900DC689F /* ProfileButtonView.swift in Sources */,
 				80019DE92B97355000DC689F /* CustomPageControlView.swift in Sources */,
 				80019DF02B979E2D00DC689F /* WorkoutsView.swift in Sources */,
