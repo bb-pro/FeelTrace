@@ -86,21 +86,21 @@ public final class CoreDataManager: NSObject {
               let statModelDescription = NSEntityDescription.entity(forEntityName: "Stats", in: unwrappedContext) else {
             return
         }
-
+        
         let stat = Stats(entity: statModelDescription, insertInto: unwrappedContext)
         stat.workoutType = workoutType
         stat.monthIndex = monthIndex
         stat.timeSpent = timeSpent
         stat.emotionIndex = emotionIndex
-
+        
         appDelegate?.saveContext()
     }
-
+    
     // Fetch stats for a particular month
     public func fetchStats(forMonth monthIndex: Int16) -> [Stats] {
         let fetchRequest: NSFetchRequest<Stats> = Stats.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "monthIndex == %d", monthIndex)
-
+        
         do {
             if let fetchedObjects = try context?.fetch(fetchRequest) {
                 return fetchedObjects
@@ -110,14 +110,14 @@ public final class CoreDataManager: NSObject {
         } catch {
             print("Error during fetchStats: \(error)")
         }
-
+        
         return []
     }
-
+    
     // Fetch all stats
     public func fetchAllStats() -> [Stats] {
         let fetchRequest: NSFetchRequest<Stats> = Stats.fetchRequest()
-
+        
         do {
             if let fetchedObjects = try context?.fetch(fetchRequest) {
                 return fetchedObjects
@@ -127,7 +127,58 @@ public final class CoreDataManager: NSObject {
         } catch {
             print("Error during fetchAllStats: \(error)")
         }
-
+        
         return []
     }
+    
+    // MARK: - Note
+    // Create a new note entity
+    public func createNote(title: String, date: Date, noteText: String, isFavorite: Bool) {
+        guard let unwrappedContext = context,
+              let noteModelDescription = NSEntityDescription.entity(forEntityName: "WorkoutNote", in: unwrappedContext) else {
+            return
+        }
+        
+        let note = WorkoutNote(entity: noteModelDescription, insertInto: unwrappedContext)
+        note.date = date
+        note.noteTitle = title
+        note.isFavorite = isFavorite
+        note.note = noteText
+        
+        appDelegate?.saveContext()
+    }
+    
+    // Fetch all notes
+    public func fetchAllNotes() -> [WorkoutNote] {
+        let fetchRequest: NSFetchRequest<WorkoutNote> = WorkoutNote.fetchRequest()
+        
+        do {
+            if let fetchedObjects = try context?.fetch(fetchRequest) {
+                return fetchedObjects
+            } else {
+                print("Failed to fetch notes")
+            }
+        } catch {
+            print("Error during fetchAllNotes: \(error)")
+        }
+        
+        return []
+    }
+    
+    // Delete a note
+    public func deleteNote(_ note: WorkoutNote) {
+        context?.delete(note)
+        appDelegate?.saveContext()
+    }
+    
+    // Edit a note
+    public func editNote(_ note: WorkoutNote, title: String, date: Date, noteText: String, isFavorite: Bool) {
+        note.date = date
+        note.noteTitle = title
+        note.isFavorite = isFavorite
+        note.note = noteText
+        
+        appDelegate?.saveContext()
+    }
+    
 }

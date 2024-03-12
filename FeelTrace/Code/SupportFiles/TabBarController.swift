@@ -47,7 +47,7 @@ final class TabBarController: UITabBarController {
         statisticsVC.tabBarItem.title = "Statistics"
         statisticsVC.tabBarItem.image = .tabIcon2
         
-        let notesVC = BaseViewController()
+        let notesVC = NotesVC()
         notesVC.tabBarItem.title = "Notes"
         notesVC.tabBarItem.image = .tabIcon3
         
