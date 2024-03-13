@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class WorkoutsVC: BaseViewController, DismissDelegate {
+final class WorkoutsVC: BaseViewController {
   
     private var contentView: WorkoutsView {
         view as? WorkoutsView ?? WorkoutsView()
@@ -28,7 +28,21 @@ final class WorkoutsVC: BaseViewController, DismissDelegate {
         contentView.addWorkoutBtn.addTarget(self, action: #selector(addPressed), for: .touchUpInside)
         contentView.tableView.delegate = self
         contentView.tableView.dataSource = self
+        registerNotifications()
     }
+    
+    private func registerNotifications() {
+            NotificationCenter.default.addObserver(self, selector: #selector(modalDismissed), name: NSNotification.Name(rawValue: "ModalDismissedNotification"), object: nil)
+        }
+
+        @objc private func modalDismissed() {
+            workouts = CoreDataManager.shared.fetchWorkouts()
+            contentView.tableView.reloadData()
+        }
+
+        deinit {
+            NotificationCenter.default.removeObserver(self)
+        }
     
     override func viewWillAppear(_ animated: Bool) {
         workouts = CoreDataManager.shared.fetchWorkouts()
@@ -39,17 +53,12 @@ final class WorkoutsVC: BaseViewController, DismissDelegate {
     
     @objc func addPressed() {
         let addArticleVC = AddWorkoutVC()
-        addArticleVC.delegate = self
         present(addArticleVC, animated: true)
     }
     
     @objc func profilePressed() {
         let profileVC = ProfileVC()
         present(profileVC, animated: true)
-    }
-    
-    func dismiss() {
-        workouts = CoreDataManager.shared.fetchWorkouts()
     }
     
 }
@@ -70,7 +79,6 @@ extension WorkoutsVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let workoutInfoVC = WorkoutInfoVC()
-        workoutInfoVC.delegate = self
         workoutInfoVC.workout = workouts[indexPath.row]
         present(workoutInfoVC, animated: true)
     }

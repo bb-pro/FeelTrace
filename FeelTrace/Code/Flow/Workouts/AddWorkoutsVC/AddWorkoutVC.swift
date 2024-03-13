@@ -21,7 +21,6 @@ final class AddWorkoutVC: BaseViewController {
         return view as? AddWorkoutView ?? AddWorkoutView()
     }
     
-    weak var delegate: DismissDelegate?
     var workout: Workout? // Property to hold workout data when editing
     
     override func loadView() {
@@ -53,12 +52,12 @@ final class AddWorkoutVC: BaseViewController {
 //                contentView.emotionsView.buttons[index].isSelected = true
 //            }
             contentView.titleLabel.text = "Edit workout"
-            contentView.saveBtn.setTitle("Update", for: .normal)
+            contentView.saveBtn.setImage(UIImage(systemName: "checkmark"), for: .normal)
         } else {
             contentView.titleLabel.text = "Add workout"
 
             selectedIndex = 0 // Default to the first emotion
-            contentView.saveBtn.setTitle("Save", for: .normal)
+            contentView.saveBtn.setImage(UIImage(systemName: "plus"), for: .normal)
         }
     }
     
@@ -100,7 +99,9 @@ final class AddWorkoutVC: BaseViewController {
                                       date: date)
         }
         
+        dismiss(animated: true) {
+               NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ModalDismissedNotification"), object: nil)
+           }
         dismissAllPresentedViewControllers()
-        delegate?.dismiss()
     }
 }

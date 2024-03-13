@@ -7,12 +7,21 @@
 
 import UIKit
 
-import UIKit
-
-final class NotesVC: BaseViewController, DismissDelegate {
-
+final class NotesVC: BaseViewController {
+    
     private var contentView: NotesView {
         view as? NotesView ?? NotesView()
+    }
+    
+    var showFavorites = false {
+        didSet {
+            if showFavorites {
+                notes = CoreDataManager.shared.fetchAllNotes().filter { $0.isFavorite }
+            } else {
+                notes = CoreDataManager.shared.fetchAllNotes()
+            }
+            contentView.tableView.reloadData()
+        }
     }
     
     private var notes = CoreDataManager.shared.fetchAllNotes() {
@@ -30,9 +39,25 @@ final class NotesVC: BaseViewController, DismissDelegate {
         contentView.tableView.dataSource = self
         notes = CoreDataManager.shared.fetchAllNotes()
         contentView.centerStack.isHidden = !notes.isEmpty
+        contentView.allBtn.addTarget(self, action: #selector(categorySelected(sender: )), for: .touchUpInside)
+        contentView.favoriteBtn.addTarget(self, action: #selector(categorySelected(sender: )), for: .touchUpInside)
+        
+        // Observe notifications for dismissals
+        NotificationCenter.default.addObserver(self, selector: #selector(modalDismissed), name: NSNotification.Name(rawValue: "ModalDismissedNotification"), object: nil)
     }
     
     // MARK: - Actions
+    
+    @objc func categorySelected(sender: UIButton) {
+        contentView.allBtn.backgroundColor = MyColors.secondary.color
+        contentView.favoriteBtn.backgroundColor = MyColors.secondary.color
+        if sender == contentView.allBtn {
+            showFavorites = false
+        } else {
+            showFavorites = true
+        }
+        sender.backgroundColor = MyColors.tint.color
+    }
     
     @objc func addPressed() {
         let addNoteVC = AddNotesVC()
@@ -44,8 +69,15 @@ final class NotesVC: BaseViewController, DismissDelegate {
         present(profileVC, animated: true)
     }
     
-    func dismiss() {
-       
+    // Called when modal view controller is dismissed
+    @objc func modalDismissed() {
+        notes = CoreDataManager.shared.fetchAllNotes()
+        contentView.tableView.reloadData()
+    }
+
+    // MARK: - Deinit
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
@@ -63,12 +95,19 @@ extension NotesVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let note = notes[indexPath.row]
+        let noteInfoVC = NoteInfoVC()
+        noteInfoVC.note = note
+        present(noteInfoVC, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let editAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (_, _, completionHandler) in
             let note = self?.notes[indexPath.row]
-            let noteInfoVC = NoteInfoVC()
-            noteInfoVC.note = note
-            self?.present(noteInfoVC, animated: true)
+            let editVC = AddNotesVC()
+            editVC.note = note
+            self?.present(editVC, animated: true)
             completionHandler(true)
         }
         editAction.backgroundColor = MyColors.secondaryText.color

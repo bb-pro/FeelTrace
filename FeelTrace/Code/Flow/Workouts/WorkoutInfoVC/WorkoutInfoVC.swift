@@ -14,8 +14,6 @@ final class WorkoutInfoVC: BaseViewController {
     private var contentView: WorkoutInfoView {
         return view as? WorkoutInfoView ?? WorkoutInfoView()
     }
-
-    weak var delegate: DismissDelegate?
     
     override func loadView() {
         view = WorkoutInfoView()
@@ -56,8 +54,9 @@ final class WorkoutInfoVC: BaseViewController {
     
     private func confirmDelete() {
         dataManager.deleteWorkout(workout)
-        dismiss(animated: true)
-        delegate?.dismiss()
+        dismiss(animated: true) {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ModalDismissedNotification"), object: nil)
+        }
     }
     
     private func confirmEdit() {

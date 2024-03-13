@@ -181,4 +181,9 @@ public final class CoreDataManager: NSObject {
         appDelegate?.saveContext()
     }
     
+    public func toggleNoteFavoriteStatus(_ note: WorkoutNote) {
+        note.isFavorite.toggle()
+        appDelegate?.saveContext()
+    }
+
 }

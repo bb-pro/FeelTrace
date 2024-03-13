@@ -19,7 +19,15 @@ final class PostsVC: BaseViewController {
         
         contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
+        contentView.profileButton.addTarget(self, action: #selector(profilePressed), for: .touchUpInside)
 
+    }
+    
+    // MARK: - Actions
+    
+    @objc func profilePressed() {
+        let profileVC = ProfileVC()
+        present(profileVC, animated: true)
     }
 }
 
