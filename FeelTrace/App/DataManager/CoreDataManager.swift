@@ -185,5 +185,49 @@ public final class CoreDataManager: NSObject {
         note.isFavorite.toggle()
         appDelegate?.saveContext()
     }
+    
+    // MARK: - Delete All
+    public func deleteAllData() {
+        deleteAllWorkouts()
+        deleteAllStats()
+        deleteAllNotes()
+    }
+
+    private func deleteAllWorkouts() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Workout")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context?.execute(deleteRequest)
+            appDelegate?.saveContext()
+        } catch {
+            print("Error deleting workouts: \(error)")
+        }
+    }
+
+    private func deleteAllStats() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Stats")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context?.execute(deleteRequest)
+            appDelegate?.saveContext()
+        } catch {
+            print("Error deleting stats: \(error)")
+        }
+    }
+
+    private func deleteAllNotes() {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "WorkoutNote")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        
+        do {
+            try context?.execute(deleteRequest)
+            appDelegate?.saveContext()
+        } catch {
+            print("Error deleting notes: \(error)")
+        }
+    }
+
 
 }

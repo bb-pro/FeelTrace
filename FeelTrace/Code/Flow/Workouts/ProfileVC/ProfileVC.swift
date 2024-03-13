@@ -45,10 +45,30 @@ final class ProfileVC: BaseViewController {
     }
 
     @objc func resetPressed() {
+        let alertController = UIAlertController(title: "Reset Progress", message: "Are you sure you want to reset your progress? This action cannot be undone.", preferredStyle: .alert)
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let confirmAction = UIAlertAction(title: "Reset", style: .destructive) { _ in
+            CoreDataManager.shared.deleteAllData()
+        }
+        alertController.addAction(confirmAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
+
     
     @objc func editPressed() {
-
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let sceneDelegate = windowScene.delegate as? SceneDelegate else {
+            return
+        }
+        
+        let onboardingVC = OnboardingVC()
+        
+        sceneDelegate.window?.rootViewController = onboardingVC
+        sceneDelegate.window?.makeKeyAndVisible()
     }
+
 }
