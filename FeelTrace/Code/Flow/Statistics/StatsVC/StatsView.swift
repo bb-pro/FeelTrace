@@ -74,9 +74,9 @@ final class StatsView: UIView {
     private(set) lazy var workoutCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 174, height: 150)
-        layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
+        layout.itemSize = CGSize(width: 170, height: 146)
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -169,8 +169,8 @@ final class StatsView: UIView {
         
         workoutCollectionView.snp.makeConstraints { make in
             make.top.equalTo(collectionView.snp.bottom).offset(16)
-            make.left.equalToSuperview().offset(16)
-            make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
+            make.left.equalToSuperview().offset(8)
+            make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-8)
         }
         
         addStatsButton.snp.makeConstraints { make in

@@ -58,8 +58,27 @@ final class ProfileVC: BaseViewController {
         present(alertController, animated: true, completion: nil)
     }
 
-    
     @objc func editPressed() {
+        guard let topViewController = UIApplication.shared.keyWindow?.rootViewController?.topmostViewController() else {
+            return
+        }
+        
+        let alert = UIAlertController(title: "Confirmation", message: "Are you sure you want to edit?", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        let editAction = UIAlertAction(title: "Edit", style: .default) { _ in
+            self.proceedWithEditing()
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(editAction)
+        
+        // Present the alert from the topmost view controller
+        topViewController.present(alert, animated: true)
+    }
+    
+    func proceedWithEditing() {
         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
               let sceneDelegate = windowScene.delegate as? SceneDelegate else {
             return
@@ -71,4 +90,20 @@ final class ProfileVC: BaseViewController {
         sceneDelegate.window?.makeKeyAndVisible()
     }
 
+
+}
+
+extension UIViewController {
+    func topmostViewController() -> UIViewController {
+        if let presentedViewController = presentedViewController {
+            return presentedViewController.topmostViewController()
+        }
+        if let navigationController = self as? UINavigationController {
+            return navigationController.visibleViewController?.topmostViewController() ?? self
+        }
+        if let tabBarController = self as? UITabBarController {
+            return tabBarController.selectedViewController?.topmostViewController() ?? self
+        }
+        return self
+    }
 }
