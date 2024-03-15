@@ -62,7 +62,7 @@ final class WorkoutsView: UIView {
         btn.backgroundColor = MyColors.tint.color
         btn.setTitle("Add workout", for: .normal)
         btn.setTitleColor(MyColors.white.color, for: .normal)
-        btn.layer.cornerRadius = 19
+        btn.layer.cornerRadius = 18
         return btn
     }()
     
