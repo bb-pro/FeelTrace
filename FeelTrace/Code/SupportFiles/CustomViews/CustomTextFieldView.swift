@@ -43,6 +43,7 @@ class CustomTextFieldView: UIView {
         let numberFormatter = NumberFormatter()
         numberFormatter.locale = Locale(identifier: "en_US")
         field.keyboardType = .decimalPad
+        field.autocorrectionType = .no
         field.delegate = self
         field.inputAccessoryView = inputAccessoryView
         field.textContentType = .none

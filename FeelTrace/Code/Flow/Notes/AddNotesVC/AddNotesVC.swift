@@ -27,6 +27,7 @@ final class AddNotesVC: BaseViewController {
         contentView.titleTF.field.text = note.noteTitle
         contentView.datePicker.date = note.date ?? Date()
         contentView.noteTextView.text = note.note
+        contentView.noteTextView.autocorrectionType = .no
         contentView.titleLabel.text = "Edit Note"
         contentView.saveBtn.setImage(UIImage(systemName: "checkmark"), for: .normal)
     }

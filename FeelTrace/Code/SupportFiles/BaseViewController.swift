@@ -29,7 +29,7 @@ class BaseViewController: UIViewController {
         navigationController?.navigationBar.tintColor = MyColors.black.color
         self.navigationController?.navigationBar.topItem?.title = ""
         setTransculantNavBar(showsBottomLine: true)
-        
+        hideNavBar()
     }
     
     func setCustomNavBar() {   
