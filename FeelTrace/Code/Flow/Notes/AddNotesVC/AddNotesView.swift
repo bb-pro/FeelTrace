@@ -100,8 +100,9 @@ final class AddNotesView: UIView {
         }
         
         saveBtn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(6)
+            make.top.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
+            make.height.width.equalTo(30)
         }
         
         mainStackView.snp.makeConstraints { make in

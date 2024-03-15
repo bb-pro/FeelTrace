@@ -17,8 +17,12 @@ final class NotesVC: BaseViewController {
         didSet {
             if showFavorites {
                 notes = CoreDataManager.shared.fetchAllNotes().filter { $0.isFavorite }
+                contentView.centerStack.isHidden = true
+                contentView.emptyFavoriteStack.isHidden = !notes.isEmpty
             } else {
                 notes = CoreDataManager.shared.fetchAllNotes()
+                contentView.emptyFavoriteStack.isHidden = true
+                contentView.centerStack.isHidden = !notes.isEmpty
             }
             contentView.tableView.reloadData()
         }
@@ -26,7 +30,13 @@ final class NotesVC: BaseViewController {
     
     private var notes = CoreDataManager.shared.fetchAllNotes() {
         didSet {
-            contentView.centerStack.isHidden = !notes.isEmpty
+            if showFavorites {
+                contentView.centerStack.isHidden = true
+                contentView.emptyFavoriteStack.isHidden = !notes.isEmpty
+            } else {
+                contentView.emptyFavoriteStack.isHidden = true
+                contentView.centerStack.isHidden = !notes.isEmpty
+            }
         }
     }
     

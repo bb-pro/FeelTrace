@@ -97,16 +97,19 @@ final class NoteInfoView: UIView {
         deleteBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.left.equalToSuperview().offset(16)
+            make.height.width.equalTo(30)
         }
         
         saveBtn.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
+            make.height.width.equalTo(30)
         }
         
         starBtn.snp.makeConstraints { make in
             make.right.equalTo(saveBtn.snp.left).offset(-16)
             make.top.equalToSuperview().offset(16)
+            make.height.width.equalTo(30)
         }
         
         titleLabel.snp.makeConstraints { make in

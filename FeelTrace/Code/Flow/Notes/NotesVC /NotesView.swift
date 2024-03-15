@@ -32,7 +32,7 @@ final class NotesView: UIView {
         btn.setTitle("All", for: .normal)
         btn.titleLabel?.font = .customSFFont(.regular, size: 15)
         btn.tintColor = MyColors.white.color
-        btn.layer.cornerRadius = 20
+        btn.layer.cornerRadius = 18
         return btn
     }()
     
@@ -46,7 +46,7 @@ final class NotesView: UIView {
         btn.setTitle("Favorite", for: .normal)
         btn.titleLabel?.font = .customSFFont(.regular, size: 15)
         btn.tintColor = MyColors.white.color
-        btn.layer.cornerRadius = 20
+        btn.layer.cornerRadius = 18
         return btn
     }()
     
@@ -78,6 +78,28 @@ final class NotesView: UIView {
         return view
     }()
     
+    private(set) lazy var emptyFavoriteStack: UIStackView = {
+        let label = UILabel()
+        label.font = .customSFFont(.regular, size: 34)
+        label.textColor = MyColors.black.color
+        label.textAlignment = .center
+        label.text = "There’s nothing to look at!"
+        
+        let subLabel = UILabel()
+        subLabel.font = .customSFFont(.regular, size: 15)
+        subLabel.textColor = MyColors.black.color
+        subLabel.textAlignment = .center
+        subLabel.text = "You can mark notes as favorite in a note card"
+        
+        let stackView = UIStackView(arrangedSubviews: [label, subLabel])
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        
+        stackView.isHidden = true
+        return stackView
+    }()
+    
     private(set) lazy var centerStack: UIStackView = {
         let label = UILabel()
         label.font = .customSFFont(.regular, size: 34)
@@ -97,7 +119,7 @@ final class NotesView: UIView {
         btn.backgroundColor = MyColors.tint.color
         btn.setTitle("Add note", for: .normal)
         btn.setTitleColor(MyColors.white.color, for: .normal)
-        btn.layer.cornerRadius = 20
+        btn.layer.cornerRadius = 18
         return btn
     }()
     
@@ -129,6 +151,7 @@ final class NotesView: UIView {
         addSubview(centerStack)
         addSubview(topStack)
         addSubview(addWorkoutBtn)
+        addSubview(emptyFavoriteStack)
     }
     
     private func setUpConstraints() {
@@ -146,9 +169,16 @@ final class NotesView: UIView {
         
         centerStack.snp.makeConstraints { make in
             make.center.equalTo(self.snp.center)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+        }
+        
+        emptyFavoriteStack.snp.makeConstraints { make in
+            make.center.equalTo(self.snp.center)
             make.left.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
         }
+        
         addWorkoutBtn.snp.makeConstraints { make in
             make.right.bottom.equalTo(safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(36)
