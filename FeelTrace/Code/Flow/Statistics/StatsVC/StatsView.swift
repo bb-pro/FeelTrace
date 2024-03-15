@@ -6,8 +6,6 @@
 //
 
 import UIKit
-
-import UIKit
 import CoreData
 
 protocol StatsViewDelegate: AnyObject {
@@ -235,21 +233,30 @@ final class StatsView: UIView {
             } else if indexPath.row % 4 == 1 || indexPath.row % 4 == 2 {
                 cell.configure(stats: stat, background: MyColors.tint.color, tintcolor: MyColors.white.color)
             } else {
-                cell.workoutView.containerView.backgroundColor = MyColors.white.color
+                cell.configure(stats: stat, background: MyColors.white.color, tintcolor: MyColors.tint.color)
             }
-        } else if indexPath.row == filteredStats.count {
-            let (emotionIndex, totalTimeSpent) = calculateRecentEmotionAndTime()
-            cell.workoutView.topLabel.text = emojis[emotionIndex]
-            cell.workoutView.textLabel.text = "Emotions"
         } else {
             let (emotionIndex, totalTimeSpent) = calculateRecentEmotionAndTime()
-//            cell.workoutView.topLabel.text = emojis[emotionIndex]
-            cell.workoutView.topLabel.text = "\((Float(totalTimeSpent) / 60).rounded())"
-            print("hours spent")
-            print(totalTimeSpent/60)
-            cell.workoutView.textLabel.text = "hours spent"
+            if indexPath.row == filteredStats.count {
+                cell.workoutView.setup(with: ButtonDM(icon: "", title: "", textColor: MyColors.tint.color, backColor: MyColors.white.color))
+                cell.workoutView.topLabel.text = emojis[emotionIndex]
+                cell.workoutView.textLabel.text = "Emotions"
+            } else {
+                if (filteredStats.count + 1) % 4 == 1 || (filteredStats.count + 1) % 4 == 2 {
+                    cell.workoutView.setup(with: ButtonDM(icon: "", title: "", textColor: MyColors.white.color, backColor: MyColors.tint.color))
+                    cell.workoutView.topLabel.text = "\((Float(totalTimeSpent) / 60).rounded())"
+                    cell.workoutView.topLabel.textColor = MyColors.white.color
+                    cell.workoutView.textLabel.text = "hours spent"
+                } else {
+                    cell.workoutView.setup(with: ButtonDM(icon: "", title: "", textColor: MyColors.tint.color, backColor: MyColors.white.color))
+                    cell.workoutView.topLabel.text = "\((Float(totalTimeSpent) / 60).rounded())"
+                    cell.workoutView.topLabel.textColor = MyColors.tint.color
+                    cell.workoutView.textLabel.text = "hours spent"
+                }
+            }
         }
     }
+
 }
 
 extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -294,10 +301,14 @@ extension StatsView: UICollectionViewDataSource, UICollectionViewDelegateFlowLay
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.collectionView {
-            selectedIndexPath = indexPath
-            selectedMonthIndex = Int16(indexPath.row)
-            collectionView.reloadData()
-            delegate?.selectedMonth(indexPath: indexPath)
+            if selectedIndexPath == indexPath {
+                selectedMonthIndex = nil
+            } else {
+                selectedIndexPath = indexPath
+                selectedMonthIndex = Int16(indexPath.row)
+                collectionView.reloadData()
+                delegate?.selectedMonth(indexPath: indexPath)
+            }
         } else {
         }
     }

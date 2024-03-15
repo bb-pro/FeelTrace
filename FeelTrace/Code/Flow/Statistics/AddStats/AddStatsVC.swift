@@ -46,7 +46,6 @@ final class AddStatsVC: BaseViewController {
 
     @objc private func textFieldDidChange() {
         let fieldsFilled = !contentView.timeSpentField.field.text!.isEmpty && !contentView.timeSpentField2.field.text!.isEmpty && !contentView.workoutTypeField.field.text!.isEmpty
-        contentView.addAnotherBtn.isEnabled = fieldsFilled
     }
 
     // MARK: - Actions
@@ -55,26 +54,29 @@ final class AddStatsVC: BaseViewController {
         // Check if all required fields are filled
         guard let timeSpent1 = contentView.timeSpentField.field.text,
               let workoutType = contentView.workoutTypeField.field.text else
-        {
+                    {
             return
         }
         let monthIndex = contentView.selectMonth(contentView.monthButton)
-        let emotionIndex = contentView.selectMonth(contentView.monthButton)
-        
-        if let timeSpent2 = contentView.timeSpentField2.field.text,
-           let workoutType2 = contentView.workoutTypeField2.field.text {
-            dataManager.createStat(workoutType: workoutType2, monthIndex: Int16(monthIndex), timeSpent: "\(timeSpent2)", emotionIndex: Int16(emotionIndex))
+        let emotionIndex = contentView.emotionsView.selectedIndex
+
+        dataManager.createStat(workoutType: workoutType, monthIndex: Int16(monthIndex), timeSpent: timeSpent1, emotionIndex: Int16(emotionIndex ?? 0))
+        if contentView.timeSpentField2.field.text != "" {
+            if let timeSpent2 = contentView.timeSpentField2.field.text,
+               let workoutType2 = contentView.workoutTypeField2.field.text {
+                print(timeSpent2)
+                
+                dataManager.createStat(workoutType: workoutType2, monthIndex: Int16(monthIndex), timeSpent: timeSpent2, emotionIndex: Int16(emotionIndex ?? 0))
+            } 
         }
-
-
-        dataManager.createStat(workoutType: workoutType, monthIndex: Int16(monthIndex), timeSpent: "\(timeSpent1)", emotionIndex: Int16(emotionIndex))
-
-
+        
         dismiss(animated: true)
         let data = dataManager.fetchAllStats()
         delegate?.dismiss()
         print(data.count)
+        print(data)
     }
+
 
     @objc func addAnotherStatsPressed() {
         contentView.fieldStack2.isHidden = false

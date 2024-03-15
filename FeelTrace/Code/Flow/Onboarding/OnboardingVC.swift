@@ -41,6 +41,7 @@ final class OnboardingVC: BaseViewController {
         contentView.ageTF.field.addTarget(self, action: #selector(textFieldChanged), for: .allEvents)
         
         contentView.nextButton.actionButton.addTarget(self, action: #selector(nextPressed), for: .touchUpInside)
+        contentView.ageTF.field.keyboardType = .numberPad
         
         contentView.typeButtons.forEach { btn in
             btn.addTarget(self, action: #selector(categorySelected(sender: )), for: .touchUpInside)

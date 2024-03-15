@@ -21,7 +21,7 @@ final class AddStatsView: UIView {
     
     private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add workout"
+        label.text = "Add statistics"
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 15)
         return label
@@ -130,6 +130,7 @@ final class AddStatsView: UIView {
     private(set) lazy var timeSpentField: CustomTextFieldView = {
         let view = CustomTextFieldView()
         view.field.placeholder = "Time spent"
+        view.field.keyboardType = .numberPad
         return view
     }()
     
@@ -150,6 +151,7 @@ final class AddStatsView: UIView {
     private(set) lazy var timeSpentField2: CustomTextFieldView = {
         let view = CustomTextFieldView()
         view.field.placeholder = "Time spent"
+        view.field.keyboardType = .numberPad
         return view
     }()
     
@@ -193,6 +195,7 @@ final class AddStatsView: UIView {
         saveBtn.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.right.equalToSuperview().offset(-16)
+            make.height.width.equalTo(30)
         }
         
         emotionsLabel.snp.makeConstraints { make in

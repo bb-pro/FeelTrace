@@ -43,6 +43,7 @@ final class AddWorkoutView: UIView {
     private(set) lazy var timeTF: CustomTextFieldView = {
         let timeTF = CustomTextFieldView()
         timeTF.field.placeholder = "Duration"
+        timeTF.field.keyboardType = .numberPad
         return timeTF
     }()
     
@@ -118,13 +119,14 @@ final class AddWorkoutView: UIView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(topImgView.snp.bottom).offset(16)
+            make.top.equalTo(topImgView.snp.bottom).offset(4)
             make.centerX.equalTo(self.snp.centerX)
         }
         
         saveBtn.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(6)
+            make.top.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
+            make.height.width.equalTo(30)
         }
         
         mainStackView.snp.makeConstraints { make in

@@ -139,7 +139,7 @@ final class ProfileView: UIView {
         }
         
         editButton.snp.makeConstraints { make in
-            make.height.width.equalTo(22)
+            make.height.width.equalTo(30)
             make.top.equalToSuperview().offset(16)
             make.right.equalToSuperview().offset(-16)
         }
