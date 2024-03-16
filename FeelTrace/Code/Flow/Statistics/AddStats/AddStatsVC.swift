@@ -22,6 +22,7 @@ final class AddStatsVC: BaseViewController {
         setupUI()
         setupActions()
         observeTextFields()
+        setupTapGestureRecognizer()
     }
 
     private func setupUI() {
@@ -67,7 +68,7 @@ final class AddStatsVC: BaseViewController {
                 print(timeSpent2)
                 
                 dataManager.createStat(workoutType: workoutType2, monthIndex: Int16(monthIndex), timeSpent: timeSpent2, emotionIndex: Int16(emotionIndex ?? 0))
-            } 
+            }
         }
         
         dismiss(animated: true)
@@ -81,5 +82,17 @@ final class AddStatsVC: BaseViewController {
     @objc func addAnotherStatsPressed() {
         contentView.fieldStack2.isHidden = false
         contentView.addAnotherBtn.isHidden = true
+    }
+
+    // MARK: - Tap Gesture Recognizer
+
+    private func setupTapGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        tapGesture.delegate = self
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func handleTap(_ gesture: UITapGestureRecognizer) {
+        contentView.endEditing(true)
     }
 }

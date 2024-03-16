@@ -57,6 +57,8 @@ final class AddNotesView: UIView {
         noteTF.layer.borderColor = MyColors.secondaryText.color.cgColor
         noteTF.isScrollEnabled = false
         noteTF.delegate = self
+        noteTF.text = "Note"
+        noteTF.textColor = MyColors.secondaryText.color
         return noteTF
     }()
     
@@ -114,5 +116,17 @@ final class AddNotesView: UIView {
 }
 
 extension AddNotesView: UITextViewDelegate {
-
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Note" {
+            textView.text = ""
+            textView.textColor = MyColors.black.color
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Note"
+            textView.textColor = MyColors.secondaryText.color
+        }
+    }
 }
