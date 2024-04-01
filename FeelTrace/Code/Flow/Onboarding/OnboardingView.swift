@@ -94,7 +94,7 @@ final class OnboardingView: UIView {
     
     private(set) lazy var nextButton: CustomButtonView = {
         let view = CustomButtonView()
-        view.btnUpdate(item: ButtonDM(icon: "", title: "Next", textColor: .white, backColor: MyColors.secondary.color))
+        view.btnUpdate(item: ButtonDM(icon: "", title: "Next", textColor: .white, backColor: MyColors.tint.color))
         view.actionButton.isEnabled = false
         return view
     }()

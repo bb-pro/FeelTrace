@@ -31,7 +31,11 @@ final class ProfileView: UIView {
     
     private lazy var profileImageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: onboardingData.imageName)
+        if onboardingData.imageName == "" {
+            imgView.image = nil
+        } else {
+            imgView.image = UIImage(named: onboardingData.imageName)
+        }
         imgView.snp.makeConstraints { make in
             make.height.width.equalTo(80)
         }

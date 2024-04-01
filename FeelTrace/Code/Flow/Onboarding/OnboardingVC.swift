@@ -17,17 +17,6 @@ final class OnboardingVC: BaseViewController {
     var age: String = ""
     
     private let userDefaultsManager = UserDefaultsManager.shared
-    
-    var isNextEnabled = true {
-        didSet {
-            contentView.nextButton.actionButton.isEnabled = isNextEnabled
-            if isNextEnabled {
-                contentView.nextButton.containerview.backgroundColor = MyColors.tint.color
-            } else {
-                contentView.nextButton.containerview.backgroundColor = MyColors.secondary.color
-            }
-        }
-    }
 
     private var contentView: OnboardingView {
         view as? OnboardingView ?? OnboardingView()
@@ -48,6 +37,7 @@ final class OnboardingVC: BaseViewController {
         }
         contentView.buttonStack.isHidden = true
         contentView.typeButtonStack.isHidden = true
+        contentView.nextButton.actionButton.isEnabled = true
     }
     
     // MARK: - Actions
@@ -55,7 +45,6 @@ final class OnboardingVC: BaseViewController {
         contentView.profileButtons.forEach{ $0.backgroundColor = MyColors.secondary.color }
         contentView.profileButtons[sender.tag].backgroundColor = MyColors.tint.color
         imageName = "profile\(sender.tag + 1)"
-        isNextEnabled = true
     }
     
     @objc func textFieldChanged(sender: UITextField) {
@@ -63,22 +52,18 @@ final class OnboardingVC: BaseViewController {
         let ageText = contentView.ageTF.field.text ?? ""
         name = nameText
         age = ageText
-        isNextEnabled = !nameText.isEmpty && !ageText.isEmpty
     }
     
     @objc func categorySelected(sender: UIButton) {
         sender.backgroundColor = MyColors.tint.color
         categories.append(Category.categories[sender.tag])
-        isNextEnabled = true
     }
     
     @objc func nextPressed() {
         currentPage += 1
-        isNextEnabled = false
         if currentPage == 1 {
             contentView.textFieldStack.isHidden = true
             contentView.buttonStack.isHidden = false
-            contentView.nextButton.actionButton.isEnabled = false
         } else if currentPage == 2 {
             contentView.buttonStack.isHidden = true
             contentView.typeButtonStack.isHidden = false
