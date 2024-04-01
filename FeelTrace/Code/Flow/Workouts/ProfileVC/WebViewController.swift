@@ -14,7 +14,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let url = URL(string: "https://doc-hosting.flycricket.io/training-book-privacy-policy/84682e55-1a63-4497-a9e4-df84444430d2/privacy") else { return }
+        guard let url = URL(string: "https://telegra.ph/Training-book-Privacy-Policy-04-01") else { return }
         
         webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
