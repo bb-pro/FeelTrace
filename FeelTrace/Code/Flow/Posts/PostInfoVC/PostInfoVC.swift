@@ -19,5 +19,12 @@ final class PostInfoVC: BaseViewController {
         view = PostInfoView()
         
         contentView.configureUI(with: post)
+        contentView.linkBtn.addTarget(self, action: #selector(linkPressed), for: .touchUpInside)
+    }
+    
+    @objc func linkPressed() {
+        let vc = WebViewController()
+        vc.urltring = post.link
+        present(vc, animated: true)
     }
 }

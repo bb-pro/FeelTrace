@@ -22,6 +22,14 @@ final class OnboardingView: UIView {
         return label
     }()
     
+    private(set) lazy var skipBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.tintColor = .black
+        btn.setTitle("Skip", for: .normal)
+        btn.setTitleColor(.black, for: .normal)
+        return btn
+    }()
+    
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.font = .customSFFont(.regular, size: 15)
@@ -120,6 +128,7 @@ final class OnboardingView: UIView {
         addSubview(nextButton)
         addSubview(customPageControl)
         addSubview(mainStack)
+        addSubview(skipBtn)
     }
     
     private func createButtonStack() -> UIStackView {
@@ -174,10 +183,13 @@ final class OnboardingView: UIView {
         return buttons
     }
     
-    
-    
-    
     func setUpConstraints() {
+        
+        skipBtn.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.right.equalToSuperview().offset(-16)
+        }
+        
         customPageControl.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).offset(16)
             make.centerX.equalToSuperview()

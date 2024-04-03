@@ -31,6 +31,13 @@ final class PostInfoView: UIView {
         return imgView
     }()
     
+    private(set) lazy var linkBtn: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitleColor(.blue, for: .normal)
+        btn.titleLabel?.numberOfLines = 0
+        return btn
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .customSFFont(.regular, size: 28)
@@ -81,6 +88,7 @@ final class PostInfoView: UIView {
         titleLabel.text = post.title
         subTitleLabel.text = post.subtitle
         infoLabel.text = post.info
+        linkBtn.setTitle(post.link, for: .normal)
     }
     
     private func setUpViews() {
@@ -89,7 +97,7 @@ final class PostInfoView: UIView {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)
         contentView.addSubview(infoLabel)
-        
+        contentView.addSubview(linkBtn)
         scrollView.addSubview(contentView)
         addSubview(scrollView)
     }
@@ -124,7 +132,14 @@ final class PostInfoView: UIView {
             make.top.equalTo(subTitleLabel.snp.bottom).offset(16)
             make.left.equalTo(contentView.snp.left).offset(16)
             make.right.equalTo(contentView.snp.right).offset(-16)
+        }
+        
+        linkBtn.snp.makeConstraints { make in
+            make.top.equalTo(infoLabel.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(16)
+            make.right.equalToSuperview().offset(-16)
             make.bottom.equalTo(contentView.snp.bottom).offset(-16)
+
         }
         
         contentView.snp.makeConstraints { make in

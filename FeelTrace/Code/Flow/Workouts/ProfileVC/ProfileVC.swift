@@ -42,6 +42,7 @@ final class ProfileVC: BaseViewController {
     
     @objc func usageProfilePressed() {
         let usageProfileVC = WebViewController()
+        usageProfileVC.urltring = "https://doc-hosting.flycricket.io/eventscheduler-privacy-policy/299d1292-2b70-4912-a6e8-d5127178fb4d/privacy"
         present(usageProfileVC, animated: true)
     }
 

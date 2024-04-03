@@ -35,6 +35,9 @@ final class OnboardingVC: BaseViewController {
         contentView.typeButtons.forEach { btn in
             btn.addTarget(self, action: #selector(categorySelected(sender: )), for: .touchUpInside)
         }
+        
+        contentView.skipBtn.addTarget(self, action: #selector(skipPressed), for: .touchUpInside)
+        
         contentView.buttonStack.isHidden = true
         contentView.typeButtonStack.isHidden = true
         contentView.nextButton.actionButton.isEnabled = true
@@ -57,6 +60,16 @@ final class OnboardingVC: BaseViewController {
     @objc func categorySelected(sender: UIButton) {
         sender.backgroundColor = MyColors.tint.color
         categories.append(Category.categories[sender.tag])
+    }
+    
+    @objc func skipPressed() {
+        presentTabBar()
+       
+        userDefaultsManager.saveOnboardingData(data: OnboardingData(
+            imageName: imageName,
+            categories: Array(Set(categories)),
+            name: name,
+            age: age))
     }
     
     @objc func nextPressed() {

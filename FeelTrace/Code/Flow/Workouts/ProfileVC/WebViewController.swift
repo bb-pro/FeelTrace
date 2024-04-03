@@ -11,10 +11,11 @@ import WebKit
 class WebViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
+    var urltring: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let url = URL(string: "https://telegra.ph/Training-book-Privacy-Policy-04-01") else { return }
+        guard let url = URL(string: urltring) else { return }
         
         webView = WKWebView()
         webView.translatesAutoresizingMaskIntoConstraints = false
